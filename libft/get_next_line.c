@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 22:46:47 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/18 10:07:45 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:43:45 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ char	*get_until_newline(char *remainder)
 		return (NULL);
 	i = 0;
 	while (remainder[i] && remainder[i] != '\n')
+	{
+		str[i] = remainder[i];
+		i++;
+	}
+	if (remainder[i] == '\n')
 	{
 		str[i] = remainder[i];
 		i++;

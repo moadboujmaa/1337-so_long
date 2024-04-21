@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:25:35 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/20 15:57:12 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:00:58 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 100
 # endif
 
 # include <string.h>
@@ -79,6 +79,7 @@ char	*ft_2d_search(char **arr, char *str);
 void	ft_2d_free(char **arr);
 int		ft_isnumber(char *str);
 long	ft_atol(char *str);
+int		ft_arrsize(char **arr);
 
 // printf functions
 int		ft_printf(const char *str, ...);

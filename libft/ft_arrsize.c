@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_arrsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/21 11:44:24 by mboujama         ###   ########.fr       */
+/*   Created: 2023/03/02 19:41:50 by mboujama          #+#    #+#             */
+/*   Updated: 2024/04/21 16:02:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "libft.h"
 
-void	print_error(char *str)
+
+int	ft_arrsize(char **arr)
 {
-	ft_putstr_fd("ERROR: ", 2);
-	ft_putstr_fd(str, 2);
-	exit(EXIT_FAILURE);
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return (0);
+	while (arr[i])
+		i++;
+	return (i);
 }

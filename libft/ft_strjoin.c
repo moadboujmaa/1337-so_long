@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 10:00:33 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/20 16:16:34 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:41:59 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (j < len_s2)
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
+	free(s1);
 	return (ptr);
 }
