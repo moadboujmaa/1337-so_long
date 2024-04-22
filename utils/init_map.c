@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/22 05:46:57 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:16:16 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	init_map(t_data *data, char *file_name)
 	}
 	data->map = ft_split(data->tmp_map, '\n');
 	free(data->tmp_map);
-	if (!check_len(data->map))
-		print_error("Not equal length\n");
-	if (!check_chars(data->map, "01PCE"))
-		print_error("Map contain undefined chars\n");
-	if (!check_walls(data->map, ft_arrsize(data->map), ft_strlen(data->map[0])))
-		print_error("Map not surrounded by walls\n");
-	if (!count_items(data))
-		print_error("Invalid number of items\n");
+	check_len(data->map);
+	check_chars(data->map, "01PCE");
+	check_walls(data->map, ft_arrsize(data->map), ft_strlen(data->map[0]));
+	count_items(data);
+	check_routes(data, data->player_x, data->player_y);
+	check_accessibility(data);
+	data->rows = ft_arrsize(data->map);
+	data->cols = ft_strlen(data->map[0]);
 }

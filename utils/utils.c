@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_2d_free.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 16:54:00 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/22 08:47:27 by mboujama         ###   ########.fr       */
+/*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
+/*   Updated: 2024/04/22 09:06:01 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../so_long.h"
 
-void	ft_2d_free(char **arr)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (map[i])
 	{
-		free(arr[i]);
+		ft_printf("%s\n", map[i]);
 		i++;
 	}
-	free(arr);
 }
