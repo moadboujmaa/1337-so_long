@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,79 +7,61 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/22 05:32:44 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/22 05:30:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	check_file_ext(char *file_name)
+void	init_items(t_data *data)
 {
-	int		len;
+	int	i;
+	int	j;
 
-	len = ft_strlen(file_name);
-	if (ft_strnstr(file_name, ".ber", len))
-		return (1);
-	return (0);
-}
-
-int	check_len(char **map)
-{
-	int		i;
-	size_t	len;
-
+	data->coins = 0;
+	data->player = 0;
+	data->exit = 0;
 	i = 0;
-	len = ft_strlen(map[i]);
-	while (map[i])
+	j = 0;
+	while (data->map[i])
 	{
-		if (ft_strlen(map[i]) != len)
-			return (0);
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == PLAYER)
+			{
+				data->player_x = i;
+				data->player_y = j;
+			}
+			j++;
+		}
 		i++;
 	}
-	return (1);
 }
 
-int	check_walls(char **map, int arr_len, int str_len)
-{
-	char	*first_wall;
-	char	*last_wall;
-	int		i;
-
-	i = 0;
-	first_wall = map[i];
-	last_wall = map[arr_len - 1];
-	while (first_wall[i])
-	{
-		if (first_wall[i] != '1' || last_wall[i] != '1')
-			return (0);
-		i++;
-	}
-	i = 1;
-	while (map[i] && i < arr_len - 1)
-	{
-		if (map[i][0] != '1' || map[i][str_len - 1] != '1')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_chars(char **map, char *set)
+int	count_items(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	init_items(data);
+	while (data->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (data->map[i][j])
 		{
-			if (!ft_strchr(set, map[i][j]))
-				return (0);
+			if (data->map[i][j] == COIN)
+				data->coins++;
+			else if (data->map[i][j] == PLAYER)
+				data->player++;
+			else if (data->map[i][j] == EXIT)
+				data->exit++;
 			j++;
 		}
 		i++;
 	}
+	if (data->coins < 1 || data->exit != 1 || data->player != 1)
+		return (0);
 	return (1);
 }

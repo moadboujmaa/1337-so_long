@@ -1,5 +1,5 @@
 NAME		= so_long
-SRC			= so_long.c ./utils/init_map.c ./utils/errors.c ./utils/map_checks.c
+SRC			= so_long.c ./utils/init_map.c ./utils/errors.c ./utils/map_checks.c ./utils/map_checks_2.c
 OBJ			= $(SRC:.c=.o)
 
 CC			= cc
@@ -12,11 +12,11 @@ all: $(NAME)
 $(LIBFT_AR):
 	@make -C $(LIBFT)
 
-%.o: %.c so_long.c
+%.o: %.c so_long.h
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME): $(OBJ) $(LIBFT_AR)
-	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_AR)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT_AR)
 
 clean:
 	@make clean -C $(LIBFT)
