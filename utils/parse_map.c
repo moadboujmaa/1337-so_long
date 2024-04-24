@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/22 14:16:16 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:10:36 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	init_map(t_data *data, char *file_name)
+void	parse_map(t_data *data, char *file_name)
 {
 	char	*str;
 
@@ -28,6 +28,7 @@ void	init_map(t_data *data, char *file_name)
 		str = get_next_line(data->map_fd);
 	}
 	data->map = ft_split(data->tmp_map, '\n');
+	data->map_copy = ft_split(data->tmp_map, '\n');
 	free(data->tmp_map);
 	check_len(data->map);
 	check_chars(data->map, "01PCE");
@@ -35,6 +36,6 @@ void	init_map(t_data *data, char *file_name)
 	count_items(data);
 	check_routes(data, data->player_x, data->player_y);
 	check_accessibility(data);
-	data->rows = ft_arrsize(data->map);
-	data->cols = ft_strlen(data->map[0]);
+	data->width = ft_strlen(data->map[0]) * 64;
+	data->height = ft_arrsize(data->map) * 64;
 }

@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/23 14:53:25 by mboujama         ###   ########.fr       */
+/*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
+/*   Updated: 2024/04/24 15:30:48 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-// todo: free data->map data->map_copy before exit
-
-int	main(int argc, char **argv)
+void	init_mlx(t_data *data)
 {
-	t_data	data;
-
-	if (argc == 2)
-	{
-		if (!check_file_ext(argv[1]))
-			print_error("File extension not supported\n");
-		parse_map(&data, argv[1]);
-		init_mlx(&data);
-	}
-	ft_2d_free(data.map);
-	return (0);
+	data->mlx = mlx_init(data->width, data->height, "SO_LONG", 1);
+	mlx_loop(data->mlx);
 }
