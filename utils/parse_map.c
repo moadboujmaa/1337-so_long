@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/23 15:10:36 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:11:57 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_map(t_data *data, char *file_name)
 
 	data->map_fd = open(file_name, O_RDONLY);
 	if (data->map_fd == -1)
-		print_error("Map file doesn't exist\n");
+		print_error("Map file doesn't exist");
 	str = get_next_line(data->map_fd);
 	data->tmp_map = ft_strdup("");
 	while (str)

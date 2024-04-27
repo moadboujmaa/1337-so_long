@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/23 15:08:25 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:19:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	count_items(t_data *data)
 		i++;
 	}
 	if (data->coins < 1 || data->exit != 1 || data->player != 1)
-		print_error("Invalid number of items\n");
+		print_error("Invalid number of items");
 }
 
 int	count_coins(t_data *data)
@@ -126,5 +126,5 @@ void	check_accessibility(t_data *data)
 		i++;
 	}
 	if (exit > 0 || coins > 0)
-		print_error("You can't reach some coins or the exit in this map\n");
+		print_error("You can't reach some coins or the exit in this map");
 }

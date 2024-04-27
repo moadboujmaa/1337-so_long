@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/24 15:26:39 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:23:44 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@
 
 typedef struct s_data
 {
-	int		map_fd;
-	char	*tmp_map;
-	char	**map;
-	char	**map_copy;
-	int		coins;
-	int		player;
-	int		exit;
-	int		player_x;
-	int		player_y;
-	int		width;
-	int		height;
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
+	int			map_fd;
+	char		*tmp_map;
+	char		**map;
+	char		**map_copy;
+	int			coins;
+	int			player;
+	int			exit;
+	int			player_x;
+	int			player_y;
+	int			width;
+	int			height;
+	mlx_t		*mlx;
+	void		*mlx_win;
+	mlx_image_t	*img;
 }	t_data;
 
 // utils/parse_map
