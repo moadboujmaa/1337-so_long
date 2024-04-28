@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/27 20:33:40 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:04:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,63 +18,75 @@ void	ft_close(void *param)
 	printf("Good bye!!\n");
 }
 
-void	ft_scroll(double x, double y, void *param)
+static mlx_texture_t	*choose_wall(t_data *data, int x, int y)
 {
-	(void) param;
-	printf("x = %f | y = %f\n", x, y);
+	mlx_texture_t	*texture;
+
+	if (x == 0 && y == 0)
+		texture = mlx_load_png("./imgs/walls/top_left.png");
+	else if (x == 0 && y == data->width / 64 - 1)
+		texture = mlx_load_png("./imgs/walls/top_right.png");
+	else if (x == data->height / 64 - 1 && y == 0)
+		texture = mlx_load_png("./imgs/walls/down_left.png");
+	else if (x == data->height / 64 - 1 && y == data->width / 64 - 1)
+		texture = mlx_load_png("./imgs/walls/down_right.png");
+	else if (x == 0)
+		texture = mlx_load_png("./imgs/walls/top.png");
+	else if (y == 0)
+		texture = mlx_load_png("./imgs/walls/left.png");
+	else if (y == data->width / 64 - 1)
+		texture = mlx_load_png("./imgs/walls/right.png");
+	else if (x == data->height / 64 - 1)
+		texture = mlx_load_png("./imgs/walls/down.png");
+	else
+		texture = mlx_load_png("./imgs/walls/inside.png");
+	return (texture);
 }
 
-void	ft_keypress(void *param)
+static mlx_texture_t	*create_texture(t_data *data, int x, int y)
 {
-	t_data	*data;
+	mlx_texture_t	*texture;
+	char			pos;
 
-	data = param;
-	printf("x = %d - y = %d - width = %d\n", data->img->instances->x, data->img->instances->y, data->width);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && data->img->instances->y > 0)
-		data->img->instances->y -= 16;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) && data->img->instances->y < data->height - 64)
-		data->img->instances->y += 16;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) && data->img->instances->x < data->width - 64)
-		data->img->instances->x += 16;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) && data->img->instances->x > 0)
-		data->img->instances->x -= 16;
+	pos = data->map[x][y];
+	if (pos == '1')
+		texture = choose_wall(data, x, y);
+	else if (pos == 'C')
+		texture = mlx_load_png("./imgs/coins/coin-1.png");
+	else if (pos == 'P')
+		texture = mlx_load_png("./imgs/player/player.png");
+	else if (pos == 'E')
+		texture = mlx_load_png("./imgs/door/door_closed.png");
+	else
+		texture = mlx_load_png("./imgs/ground/ground.png");
+	return (texture);
 }
 
-// void	display_image(t_data *data)
-// {
-// 	data->img = mlx_new_image(data->mlx, 64, 64);
-// 	if (!data->img)
-// 	{
-// 		printf("error initialize data->img\n");
-// 		return ;
-// 	}
-// 	memset(data->img->pixels, 255,
-// 		data->img->width * data->img->height * sizeof(int32_t));
-// 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
-// 	{
-// 		printf("can't add image to window\n");
-// 		return ;
-// 	}
-// }
-
-void	display_image(t_data *data)
+void	display_map(t_data *data)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
+	int				i;
+	int				j;
 
-	texture = mlx_load_png("./imgs/wall.png");
-	if (!texture)
+	i = 0;
+	while (data->map[i])
 	{
-		printf("error texture\n");
-		exit(1);
+		j = 0;
+		while (data->map[i][j])
+		{
+			texture = create_texture(data, i, j);
+			if (!texture)
+				print_error("loading PNG");
+			img = mlx_texture_to_image(data->mlx, texture);
+			if (!img)
+				print_error("converting texture to image");
+			mlx_image_to_window(data->mlx, img, j * WIDTH, i * HEIGHT);
+			mlx_delete_image(data->mlx, data->img);
+			j++;
+		}
+		i++;
 	}
-	img = mlx_texture_to_image(data->mlx, texture);
-	if (!img)
-	{
-		printf("error image\n");
-		exit(1);
-	}
-	mlx_image_to_window(data->mlx, img, 0, 0);
 }
 
 void	init_mlx(t_data *data)
@@ -82,11 +94,6 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG", 0);
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
-	mlx_close_hook(data->mlx, ft_close, data->mlx);
-	mlx_scroll_hook(data->mlx, ft_scroll, data->mlx);
-	display_image(data);
-	printf("here\n");
-	// mlx_loop_hook(data->mlx, ft_keypress, data);
-	mlx_loop(data->mlx);
-	mlx_terminate(data->mlx);
+	mlx_close_hook(data->mlx, ft_close, NULL);
+	display_map(data);
 }

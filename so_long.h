@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/27 16:23:44 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/28 16:47:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # define WALL		49
 # define EMPTY		48
 # define CHECKED	88
+# define WIDTH		64
+# define HEIGHT		64
+
+typedef struct s_pos
+{
+	int	x_pos;
+	int	y_pos;
+}	t_pos;
 
 typedef struct s_data
 {
@@ -38,6 +46,9 @@ typedef struct s_data
 	int			height;
 	mlx_t		*mlx;
 	void		*mlx_win;
+	int			movements;
+	int			door_x;
+	int			door_y;
 	mlx_image_t	*img;
 }	t_data;
 
@@ -61,5 +72,8 @@ void	init_mlx(t_data *data);
 
 // utils/errors
 void	print_error(char *str);
+
+// utils/game_logic
+void	handle_keys(mlx_key_data_t keydata, void *param);
 
 #endif
