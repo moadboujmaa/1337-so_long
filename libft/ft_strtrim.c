@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:10:06 by mboujama          #+#    #+#             */
-/*   Updated: 2023/12/13 09:23:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 10:37:09 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		first_trim_index++;
 	}
 	ptr[i] = '\0';
+	free((char *)s1);
 	return (ptr);
 }
 

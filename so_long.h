@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/29 09:02:04 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:07:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	check_accessibility(t_data *data);
 void	init_mlx(t_data *data);
 
 // utils/errors
-void	print_error(t_data *data, char *str);
+void	print_error(char *str);
+void	print_error_f(t_data *data, char *str);
 void	free_program(t_data *data);
 
 // utils/game_logic

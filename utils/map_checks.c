@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 09:02:41 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:06:05 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_len(t_data *data)
 	while (data->map[i])
 	{
 		if (ft_strlen(data->map[i]) != len)
-			print_error(data, "Not equal length");
+			print_error_f(data, "Not equal length");
 		i++;
 	}
 }
@@ -49,7 +49,7 @@ void	check_chars(t_data *data, char *set)
 		while (data->map[i][j])
 		{
 			if (!ft_strchr(set, data->map[i][j]))
-				print_error(data, "Map contain undefined chars");
+				print_error_f(data, "Map contain undefined chars");
 			j++;
 		}
 		i++;
@@ -68,14 +68,14 @@ void	check_walls(t_data *data, int arr_len, int str_len)
 	while (first_wall[i])
 	{
 		if (first_wall[i] != WALL || last_wall[i] != WALL)
-			print_error(data, "Map not surrounded by walls");
+			print_error_f(data, "Map not surrounded by walls");
 		i++;
 	}
 	i = 1;
 	while (data->map[i] && i < arr_len - 1)
 	{
 		if (data->map[i][0] != WALL || data->map[i][str_len - 1] != WALL)
-			print_error(data, "Map not surrounded by walls");
+			print_error_f(data, "Map not surrounded by walls");
 		i++;
 	}
 }

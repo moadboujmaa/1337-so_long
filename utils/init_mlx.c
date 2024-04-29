@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 09:47:10 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:07:20 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	display_map(t_data *data)
 		{
 			texture = create_texture(data, i, j);
 			if (!texture)
-				print_error(NULL, "loading PNG");
+				print_error("loading PNG");
 			img = mlx_texture_to_image(data->mlx, texture);
 			if (!img)
-				print_error(NULL, "converting texture to image");
+				print_error("converting texture to image");
 			mlx_image_to_window(data->mlx, img, j * WIDTH, i * HEIGHT);
 			mlx_delete_texture(texture);
 			j++;
@@ -94,7 +94,7 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG", 0);
 	data->movements = 0;
 	if (!data->mlx)
-		print_error(NULL, "Error initializing mlx window");
+		print_error("Error initializing mlx window");
 	mlx_close_hook(data->mlx, ft_close, NULL);
 	display_map(data);
 }
