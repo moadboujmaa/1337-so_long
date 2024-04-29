@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/28 11:04:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/28 18:18:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	display_map(t_data *data)
 void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG", 0);
+	data->movements = 0;
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
 	mlx_close_hook(data->mlx, ft_close, NULL);

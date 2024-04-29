@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/28 16:50:58 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/28 18:18:41 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	move_player(t_data *data, int x, int y)
 		if (data->coins == 0)
 		{
 			get_door_pos(data);
-			printf("%d %d\n", data->door_x, data->door_y);
 			render_image(data, data->door_x, data->door_y, 'o');
 		}
 		data->map[data->player_x][data->player_y] = '0';
@@ -70,8 +69,14 @@ static void	move_player(t_data *data, int x, int y)
 		data->player_x = x;
 		data->player_y = y;
 		data->movements += 1;
-		printf("%d %d\n", data->movements, data->coins);
+		ft_printf("%d %d\n", data->movements, data->coins);
 	}
+	if (data->map[x][y] == EXIT && data->coins == 0)
+	{
+		ft_printf("You won!!\n");
+		mlx_close_window(data->mlx);
+	}
+
 }
 
 void	handle_keys(mlx_key_data_t keydata, void *param)
@@ -79,7 +84,6 @@ void	handle_keys(mlx_key_data_t keydata, void *param)
 	t_data	*data;
 
 	data = param;
-	data->movements = 0;
 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action)
 		move_player(data, data->player_x - 1, data->player_y);
