@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/25 08:18:40 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:08:47 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		ft_printf("%s\n", map[i]);
+		printf("%p\n", map[i]);
 		i++;
 	}
 }

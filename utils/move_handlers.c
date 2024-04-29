@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/28 18:18:41 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:47:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ static void	render_image(t_data *data, int x, int y, char type)
 
 	texture = NULL;
 	if (type == 'g')
-		texture = mlx_load_png("./imgs/ground/ground.png");
+		texture = mlx_load_png("./textures/ground/ground.png");
 	else if (type == 'p')
-		texture = mlx_load_png("./imgs/player/player.png");
+		texture = mlx_load_png("./textures/player/player.png");
 	else if (type == 'o')
-		texture = mlx_load_png("./imgs/door/door_opened.png");
+		texture = mlx_load_png("./textures/door/door_opened.png");
 	img = mlx_texture_to_image(data->mlx, texture);
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
+	mlx_delete_texture(texture);
 }
 
 static void	move_player(t_data *data, int x, int y)
@@ -69,7 +70,7 @@ static void	move_player(t_data *data, int x, int y)
 		data->player_x = x;
 		data->player_y = y;
 		data->movements += 1;
-		ft_printf("%d %d\n", data->movements, data->coins);
+		ft_printf("Movements counter: %d\n", data->movements);
 	}
 	if (data->map[x][y] == EXIT && data->coins == 0)
 	{

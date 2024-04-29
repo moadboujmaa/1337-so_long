@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/28 18:18:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:47:10 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,31 @@
 void	ft_close(void *param)
 {
 	(void) param;
-	printf("Good bye!!\n");
+	ft_printf("Good bye!!\n");
 }
 
-static mlx_texture_t	*choose_wall(t_data *data, int x, int y)
+static mlx_texture_t	*choose_texture(t_data *data, int x, int y)
 {
 	mlx_texture_t	*texture;
 
 	if (x == 0 && y == 0)
-		texture = mlx_load_png("./imgs/walls/top_left.png");
+		texture = mlx_load_png("./textures/walls/top_left.png");
 	else if (x == 0 && y == data->width / 64 - 1)
-		texture = mlx_load_png("./imgs/walls/top_right.png");
+		texture = mlx_load_png("./textures/walls/top_right.png");
 	else if (x == data->height / 64 - 1 && y == 0)
-		texture = mlx_load_png("./imgs/walls/down_left.png");
+		texture = mlx_load_png("./textures/walls/down_left.png");
 	else if (x == data->height / 64 - 1 && y == data->width / 64 - 1)
-		texture = mlx_load_png("./imgs/walls/down_right.png");
+		texture = mlx_load_png("./textures/walls/down_right.png");
 	else if (x == 0)
-		texture = mlx_load_png("./imgs/walls/top.png");
+		texture = mlx_load_png("./textures/walls/top.png");
 	else if (y == 0)
-		texture = mlx_load_png("./imgs/walls/left.png");
+		texture = mlx_load_png("./textures/walls/left.png");
 	else if (y == data->width / 64 - 1)
-		texture = mlx_load_png("./imgs/walls/right.png");
+		texture = mlx_load_png("./textures/walls/right.png");
 	else if (x == data->height / 64 - 1)
-		texture = mlx_load_png("./imgs/walls/down.png");
+		texture = mlx_load_png("./textures/walls/down.png");
 	else
-		texture = mlx_load_png("./imgs/walls/inside.png");
+		texture = mlx_load_png("./textures/walls/inside.png");
 	return (texture);
 }
 
@@ -50,15 +50,15 @@ static mlx_texture_t	*create_texture(t_data *data, int x, int y)
 
 	pos = data->map[x][y];
 	if (pos == '1')
-		texture = choose_wall(data, x, y);
+		texture = choose_texture(data, x, y);
 	else if (pos == 'C')
-		texture = mlx_load_png("./imgs/coins/coin-1.png");
+		texture = mlx_load_png("./textures/coins/coin-1.png");
 	else if (pos == 'P')
-		texture = mlx_load_png("./imgs/player/player.png");
+		texture = mlx_load_png("./textures/player/player.png");
 	else if (pos == 'E')
-		texture = mlx_load_png("./imgs/door/door_closed.png");
+		texture = mlx_load_png("./textures/door/door_closed.png");
 	else
-		texture = mlx_load_png("./imgs/ground/ground.png");
+		texture = mlx_load_png("./textures/ground/ground.png");
 	return (texture);
 }
 
@@ -77,12 +77,12 @@ void	display_map(t_data *data)
 		{
 			texture = create_texture(data, i, j);
 			if (!texture)
-				print_error("loading PNG");
+				print_error(NULL, "loading PNG");
 			img = mlx_texture_to_image(data->mlx, texture);
 			if (!img)
-				print_error("converting texture to image");
+				print_error(NULL, "converting texture to image");
 			mlx_image_to_window(data->mlx, img, j * WIDTH, i * HEIGHT);
-			mlx_delete_image(data->mlx, data->img);
+			mlx_delete_texture(texture);
 			j++;
 		}
 		i++;
@@ -94,7 +94,7 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG", 0);
 	data->movements = 0;
 	if (!data->mlx)
-		print_error("Error initializing mlx window");
+		print_error(NULL, "Error initializing mlx window");
 	mlx_close_hook(data->mlx, ft_close, NULL);
 	display_map(data);
 }

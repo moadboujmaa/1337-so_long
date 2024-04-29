@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/28 16:47:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:02:04 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	parse_map(t_data *data, char *file_name);
 
 // utils/map_checks
 int		check_file_ext(char *file_name);
-void	check_len(char **map);
-void	check_walls(char **map, int arr_len, int str_len);
-void	check_chars(char **map, char *set);
+void	check_len(t_data *data);
+void	check_walls(t_data *data, int arr_len, int str_len);
+void	check_chars(t_data *data, char *set);
 
 // utils/map_checks_2
 void	count_items(t_data *data);
@@ -71,7 +71,8 @@ void	check_accessibility(t_data *data);
 void	init_mlx(t_data *data);
 
 // utils/errors
-void	print_error(char *str);
+void	print_error(t_data *data, char *str);
+void	free_program(t_data *data);
 
 // utils/game_logic
 void	handle_keys(mlx_key_data_t keydata, void *param);

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/25 08:19:10 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:02:41 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,60 +22,60 @@ int	check_file_ext(char *file_name)
 	return (0);
 }
 
-void	check_len(char **map)
+void	check_len(t_data *data)
 {
 	int		i;
 	size_t	len;
 
 	i = 0;
-	len = ft_strlen(map[i]);
-	while (map[i])
+	len = ft_strlen(data->map[i]);
+	while (data->map[i])
 	{
-		if (ft_strlen(map[i]) != len)
-			print_error("Not equal length");
+		if (ft_strlen(data->map[i]) != len)
+			print_error(data, "Not equal length");
 		i++;
 	}
 }
 
-void	check_chars(char **map, char *set)
+void	check_chars(t_data *data, char *set)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (data->map[i][j])
 		{
-			if (!ft_strchr(set, map[i][j]))
-				print_error("Map contain undefined chars");
+			if (!ft_strchr(set, data->map[i][j]))
+				print_error(data, "Map contain undefined chars");
 			j++;
 		}
 		i++;
 	}
 }
 
-void	check_walls(char **map, int arr_len, int str_len)
+void	check_walls(t_data *data, int arr_len, int str_len)
 {
 	char	*first_wall;
 	char	*last_wall;
 	int		i;
 
 	i = 0;
-	first_wall = map[i];
-	last_wall = map[arr_len - 1];
+	first_wall = data->map[i];
+	last_wall = data->map[arr_len - 1];
 	while (first_wall[i])
 	{
 		if (first_wall[i] != WALL || last_wall[i] != WALL)
-			print_error("Map not surrounded by walls");
+			print_error(data, "Map not surrounded by walls");
 		i++;
 	}
 	i = 1;
-	while (map[i] && i < arr_len - 1)
+	while (data->map[i] && i < arr_len - 1)
 	{
-		if (map[i][0] != WALL || map[i][str_len - 1] != WALL)
-			print_error("Map not surrounded by walls");
+		if (data->map[i][0] != WALL || data->map[i][str_len - 1] != WALL)
+			print_error(data, "Map not surrounded by walls");
 		i++;
 	}
 }
