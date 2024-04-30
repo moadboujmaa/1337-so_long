@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/30 16:47:59 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:38:33 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ static void	render_image(t_data *data, int x, int y, char type)
 
 	texture = NULL;
 	if (type == 'g')
-		texture = mlx_load_png("./mandatory/textures/ground/ground.png");
+		texture = mlx_load_png("./bonus/textures/ground/ground.png");
 	else if (type == 'p')
-		texture = mlx_load_png("./mandatory/textures/player/player.png");
+		texture = mlx_load_png("./bonus/textures/player/player.png");
 	else if (type == 'o')
-		texture = mlx_load_png("./mandatory/textures/door/door_opened.png");
+		texture = mlx_load_png("./bonus/textures/door/door_opened.png");
 	else if (type == 'a')
-		texture = mlx_load_png("./mandatory/textures/walls/top_left.png");
+		texture = mlx_load_png("./bonus/textures/walls/top_left.png");
 	else if (type == 'b')
-		texture = mlx_load_png("./mandatory/textures/walls/top.png");
+		texture = mlx_load_png("./bonus/textures/walls/top.png");
 	img = mlx_texture_to_image(data->mlx, texture);
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
 	mlx_delete_texture(texture);
@@ -72,11 +72,7 @@ static void	move_player(t_data *data, int x, int y)
 	{
 		if (data->map[x][y] == COIN)
 			data->coins--;
-		if (data->coins == 0)
-		{
-			get_door_pos(data);
-			render_image(data, data->door_x, data->door_y, 'o');
-		}
+		get_door_pos(data);
 		data->map[data->player_x][data->player_y] = '0';
 		data->map[x][y] = 'P';
 		render_image(data, x, y, 'p');
@@ -90,7 +86,8 @@ static void	move_player(t_data *data, int x, int y)
 		ft_printf("You won!!\n");
 		mlx_close_window(data->mlx);
 	}
-	start_animation(data);
+	if (data->flag_started)
+		start_animation(data);
 }
 
 void	handle_keys(mlx_key_data_t keydata, void *param)
