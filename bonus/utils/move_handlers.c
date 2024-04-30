@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 15:33:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:47:59 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ static void	render_image(t_data *data, int x, int y, char type)
 		texture = mlx_load_png("./mandatory/textures/player/player.png");
 	else if (type == 'o')
 		texture = mlx_load_png("./mandatory/textures/door/door_opened.png");
+	else if (type == 'a')
+		texture = mlx_load_png("./mandatory/textures/walls/top_left.png");
+	else if (type == 'b')
+		texture = mlx_load_png("./mandatory/textures/walls/top.png");
 	img = mlx_texture_to_image(data->mlx, texture);
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
 	mlx_delete_texture(texture);
@@ -55,8 +59,11 @@ static void	render_image(t_data *data, int x, int y, char type)
 static void	count_move(t_data *data)
 {
 	data->movements++;
+	render_image(data, 0, 0, 'a');
+	render_image(data, 0, 1, 'b');
+	render_image(data, 0, 2, 'b');
 	mlx_put_string(data->mlx, "Movements: ", 10, 10);
-	mlx_put_string(data->mlx, ft_itoa(data->movements), 150, 10);
+	mlx_put_string(data->mlx, ft_itoa(data->movements), 140, 10);
 }
 
 static void	move_player(t_data *data, int x, int y)
@@ -77,14 +84,13 @@ static void	move_player(t_data *data, int x, int y)
 		data->player_x = x;
 		data->player_y = y;
 		count_move(data);
-		ft_printf("Movements counter: %d\n", data->movements);
 	}
 	if (data->map[x][y] == EXIT && data->coins == 0)
 	{
 		ft_printf("You won!!\n");
 		mlx_close_window(data->mlx);
 	}
-
+	start_animation(data);
 }
 
 void	handle_keys(mlx_key_data_t keydata, void *param)

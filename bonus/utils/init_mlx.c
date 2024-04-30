@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 13:52:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:54:03 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG_BONUS", 0);
 	data->movements = 0;
+	data->flag_started = 1;
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
 	mlx_close_hook(data->mlx, ft_close, NULL);

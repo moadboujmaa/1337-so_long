@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/29 15:43:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:32:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # define WIDTH		64
 # define HEIGHT		64
 
-typedef struct s_pos
+typedef struct s_animations
 {
-	int	x_pos;
-	int	y_pos;
-}	t_pos;
+	int	flag_i;
+	int	flag_j;
+}	t_animations;
 
 typedef struct s_data
 {
@@ -49,6 +49,7 @@ typedef struct s_data
 	int			movements;
 	int			door_x;
 	int			door_y;
+	int			flag_started;
 	mlx_image_t	*img;
 }	t_data;
 
@@ -76,5 +77,9 @@ void	free_program(t_data *data);
 
 // utils/game_logic
 void	handle_keys(mlx_key_data_t keydata, void *param);
+
+// utils/hooks
+void	flag_hook(void *param);
+void	start_animation(t_data *data);
 
 #endif
