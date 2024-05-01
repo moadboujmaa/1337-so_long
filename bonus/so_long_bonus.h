@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/30 15:32:42 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:01:14 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	handle_keys(mlx_key_data_t keydata, void *param);
 // utils/hooks
 void	flag_hook(void *param);
 void	start_animation(t_data *data);
+void	coin_hook(void *param);
 
 #endif

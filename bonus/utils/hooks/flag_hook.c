@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/30 21:56:51 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:03:16 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	render_flag_frame(t_data *data, int x, int y, int frame)
 	else if (frame == 6)
 		texture = mlx_load_png("./bonus/textures/door/flag-7.png");
 	img = mlx_texture_to_image(data->mlx, texture);
-	printf("here\n");
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
 	mlx_delete_texture(texture);
 }
@@ -47,7 +46,6 @@ void	flag_hook(void *param)
 	data = param;
 	if (i == 10)
 	{
-		printf("%d %d\n", i, j);
 		render_flag_frame(data, data->door_x, data->door_y, j);
 		i = 0;
 		j++;

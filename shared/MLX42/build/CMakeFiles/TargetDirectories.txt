@@ -1,7 +1,0 @@
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/mlx42.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/edit_cache.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/rebuild_cache.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/list_install_components.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/install.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/install/local.dir
-/home/mmboujamaa/Main/1337/1337-so_long/shared/MLX42/build/CMakeFiles/install/strip.dir

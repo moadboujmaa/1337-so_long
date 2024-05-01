@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/30 14:54:03 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:04:04 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	display_map(t_data *data)
 		}
 		i++;
 	}
+	mlx_loop_hook(data->mlx, coin_hook, data);
 }
 
 void	init_mlx(t_data *data)

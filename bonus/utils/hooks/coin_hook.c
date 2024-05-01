@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/30 22:01:50 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:05:32 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,43 @@ static void	render_coin_frame(t_data *data, int x, int y, int frame)
 	else if (frame == 6)
 		texture = mlx_load_png("./bonus/textures/coins/coin-7.png");
 	img = mlx_texture_to_image(data->mlx, texture);
-	printf("here\n");
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
 	mlx_delete_texture(texture);
 }
 
+static void	get_coin_position(t_data *data, int frame)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == COIN)
+				render_coin_frame(data, i, j, frame);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	coin_hook(void *param)
+{
+	static int	i;
+	static int	j;
+	t_data		*data;
+
+	data = param;
+	if (i == 7)
+	{
+		get_coin_position(data, j);
+		i = 0;
+		j++;
+		if (j == 7)
+			j = 0;
+	}
+	i++;
+}
