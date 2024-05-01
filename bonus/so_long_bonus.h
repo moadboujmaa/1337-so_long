@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 06:01:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:01:17 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../shared/libft/libft.h"
 # include "../shared/MLX42/include/MLX42/MLX42.h"
+# include <time.h>
 
 # define COIN		67
 # define PLAYER 	80
@@ -24,6 +25,7 @@
 # define CHECKED	88
 # define WIDTH		64
 # define HEIGHT		64
+# define ENEMY		90
 
 typedef struct s_animations
 {
@@ -79,8 +81,13 @@ void	free_program(t_data *data);
 void	handle_keys(mlx_key_data_t keydata, void *param);
 
 // utils/hooks
-void	flag_hook(void *param);
 void	start_animation(t_data *data);
+void	flag_hook(void *param);
 void	coin_hook(void *param);
+void	idle_hook(void *param);
+void	enemy_hook(void *param);
+void	move_enemies(void *param);
+
+void	lose(t_data *data);
 
 #endif

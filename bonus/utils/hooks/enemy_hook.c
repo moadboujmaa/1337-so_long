@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coin_hook.c                                        :+:      :+:    :+:   */
+/*   enemy_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 10:53:07 by mboujama         ###   ########.fr       */
+/*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
+/*   Updated: 2024/05/01 13:30:12 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
 
-static void	render_coin_frame(t_data *data, int x, int y, int frame)
+static void	render_enemy_frame(t_data *data, int x, int y, int frame)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
 
 	texture = NULL;
 	if (frame == 0)
-		texture = mlx_load_png("./bonus/textures/coins/coin-1.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-1.png");
 	else if (frame == 1)
-		texture = mlx_load_png("./bonus/textures/coins/coin-2.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-2.png");
 	else if (frame == 2)
-		texture = mlx_load_png("./bonus/textures/coins/coin-3.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-3.png");
 	else if (frame == 3)
-		texture = mlx_load_png("./bonus/textures/coins/coin-4.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-4.png");
 	else if (frame == 4)
-		texture = mlx_load_png("./bonus/textures/coins/coin-5.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-5.png");
 	else if (frame == 5)
-		texture = mlx_load_png("./bonus/textures/coins/coin-6.png");
-	else if (frame == 6)
-		texture = mlx_load_png("./bonus/textures/coins/coin-7.png");
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-6.png");
+    else if (frame == 6)
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-4.png");
+    else if (frame == 7)
+        texture = mlx_load_png("./bonus/textures/enemies/enemy-5.png");
+	else if (frame == 8)
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-7.png");
 	img = mlx_texture_to_image(data->mlx, texture);
 	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
 	mlx_delete_texture(texture);
 }
 
-static void	get_coin_position(t_data *data, int frame)
+static void	get_enemy_position(t_data *data, int frame)
 {
 	int	i;
 	int	j;
@@ -48,15 +52,15 @@ static void	get_coin_position(t_data *data, int frame)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == COIN)
-				render_coin_frame(data, i, j, frame);
+			if (data->map[i][j] == ENEMY)
+				render_enemy_frame(data, i, j, frame);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	coin_hook(void *param)
+void	enemy_hook(void *param)
 {
 	static int	i;
 	static int	j;
@@ -65,10 +69,10 @@ void	coin_hook(void *param)
 	data = param;
 	if (i == 9)
 	{
-		get_coin_position(data, j);
+		get_enemy_position(data, j);
 		i = 0;
 		j++;
-		if (j == 7)
+		if (j == 9)
 			j = 0;
 	}
 	i++;

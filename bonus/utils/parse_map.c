@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 13:52:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:10:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parse_map(t_data *data, char *file_name)
 	free(data->tmp_map);
 	switch_exit(data);
 	check_len(data);
-	check_chars(data, "01PCE");
+	check_chars(data, "01PCEZ");
 	check_walls(data, ft_arrsize(data->map), ft_strlen(data->map[0]));
 	count_items(data);
 	check_routes(data, data->player_x, data->player_y);

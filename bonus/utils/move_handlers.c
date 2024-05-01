@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/01 06:11:20 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:21:08 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	move_player(t_data *data, int x, int y)
 {
 	if (data->map[x][y] != WALL && data->map[x][y] != EXIT)
 	{
+		if (data->map[x][y] == ENEMY)
+			lose(data);
 		if (data->map[x][y] == COIN)
 			data->coins--;
 		get_door_pos(data);
