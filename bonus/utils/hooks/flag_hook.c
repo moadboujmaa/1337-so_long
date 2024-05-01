@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 06:03:16 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:11:23 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	flag_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 10)
+	if (i == 8)
 	{
 		render_flag_frame(data, data->door_x, data->door_y, j);
 		i = 0;
@@ -57,9 +57,9 @@ void	flag_hook(void *param)
 
 void	start_animation(t_data *data)
 {
-	if (data->coins == 0 && data->flag_started)
+	if (data->coins == 0 && !data->flag_started)
 	{
 		mlx_loop_hook(data->mlx, flag_hook, data);
-		data->flag_started = 0;
+		data->flag_started = 1;
 	}
 }

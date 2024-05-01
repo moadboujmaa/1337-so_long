@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/30 21:38:33 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/01 06:11:20 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	move_player(t_data *data, int x, int y)
 		ft_printf("You won!!\n");
 		mlx_close_window(data->mlx);
 	}
-	if (data->flag_started)
+	if (!data->flag_started)
 		start_animation(data);
 }
 
