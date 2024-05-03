@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/02 08:18:42 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:52:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define WIDTH		64
 # define HEIGHT		64
 # define ENEMY		90
+
+# define WIN		1
+# define LOSE		0
 
 typedef struct s_animations
 {
@@ -93,6 +96,12 @@ void	lose(t_data *data);
 
 // utils/start
 void	call_map(mlx_key_data_t keydata, void *param);
-void    welcome_page(t_data *data);
+void	welcome_page(t_data *data);
+
+// end
+void	end_page(t_data *data, int status);
+
+// end_game
+void	end_game(t_data *data, int status);
 
 #endif

@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/03 15:55:54 by mboujama         ###   ########.fr       */
+/*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
+/*   Updated: 2024/05/03 15:49:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-
-void	ft_close(void *param)
-{
-	(void) param;
-	ft_printf("Good bye!!\n");
-}
-
-void	call_map(mlx_key_data_t keydata, void *param)
-{
-	t_data	*data;
-
-	data = param;
-	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-	{
-		display_map(data);
-		mlx_loop_hook(data->mlx, idle_hook, data);
-		mlx_loop_hook(data->mlx, enemy_hook, data);
-		mlx_key_hook(data->mlx, handle_keys, data);
-		mlx_put_string(data->mlx, "Movements:   0", 10, 10);
-	}
-}
 
 static void	set_background(t_data *data, mlx_image_t **img)
 {
@@ -51,7 +30,7 @@ static void	set_background(t_data *data, mlx_image_t **img)
 	}
 }
 
-void	welcome_page(t_data *data)
+void	end_page(t_data *data, int status)
 {
 	mlx_image_t		*img;
 	mlx_image_t		*img2;
@@ -64,7 +43,12 @@ void	welcome_page(t_data *data)
 		print_error_f(data, "new image");
 	set_background(data, &img);
 	mlx_image_to_window(data->mlx, img, 0, 0);
-	texture = mlx_load_png("./bonus/textures/additional/welcome.png");
+	if (status == WIN)
+		texture = mlx_load_png("./bonus/textures/additional/you_win.png");
+	else
+		texture = mlx_load_png("./bonus/textures/additional/you_lose.png");
+	if (!texture)
+		print_error_f(data, "Image not found");
 	img2 = mlx_texture_to_image(data->mlx, texture);
 	pos_x = (data->width - 241) / 2;
 	pos_y = (data->height - 146) / 2;
