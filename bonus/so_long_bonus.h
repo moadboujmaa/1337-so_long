@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 15:01:17 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/02 08:18:42 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	free_program(t_data *data);
 
 // utils/game_logic
 void	handle_keys(mlx_key_data_t keydata, void *param);
+void	display_map(t_data *data);
 
 // utils/hooks
 void	start_animation(t_data *data);
@@ -89,5 +90,9 @@ void	enemy_hook(void *param);
 void	move_enemies(void *param);
 
 void	lose(t_data *data);
+
+// utils/start
+void	call_map(mlx_key_data_t keydata, void *param);
+void    welcome_page(t_data *data);
 
 #endif

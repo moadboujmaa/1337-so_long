@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/30 09:46:31 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/02 08:08:18 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int argc, char **argv)
 			print_error("File extension not supported");
 		parse_map(&data, argv[1]);
 		init_mlx(&data);
-		mlx_key_hook(data.mlx, handle_keys, &data);
-		mlx_put_string(data.mlx, "Movements:   0", 10, 10);
 		mlx_loop(data.mlx);
 		mlx_terminate(data.mlx);
 	}

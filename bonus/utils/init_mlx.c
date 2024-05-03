@@ -6,17 +6,11 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/01 16:14:08 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:09:35 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-
-void	ft_close(void *param)
-{
-	(void) param;
-	ft_printf("Good bye!!\n");
-}
 
 static mlx_texture_t	*choose_texture(t_data *data, int x, int y)
 {
@@ -95,13 +89,10 @@ void	display_map(t_data *data)
 void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG_BONUS", 0);
-	data->movements = 0;
-	data->flag_started = 0;
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
-	mlx_close_hook(data->mlx, ft_close, NULL);
-	display_map(data);
-	mlx_loop_hook(data->mlx, idle_hook, data);
-	mlx_loop_hook(data->mlx, enemy_hook, data);
-	mlx_loop_hook(data->mlx, move_enemies, data);
+	data->movements = 0;
+	data->flag_started = 0;
+	welcome_page(data);
+	mlx_key_hook(data->mlx, call_map, data);
 }
