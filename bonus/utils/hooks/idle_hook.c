@@ -6,10 +6,9 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:07:35 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/03 15:58:23 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:16:23 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../so_long_bonus.h"
 
@@ -68,7 +67,7 @@ void	idle_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 7 && data->map[0][0] != PLAYER)
+	if (i == 7 && !data->is_over)
 	{
 		get_character_position(data, j);
 		i = 0;

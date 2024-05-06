@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/01 16:25:07 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:36:35 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	move_enemies(void *param)
 
 	i = 0;
 	data = param;
-	if (time == 70)
+	if (time == 70 && !data->is_over)
 	{
 		while (data->map[i])
 		{

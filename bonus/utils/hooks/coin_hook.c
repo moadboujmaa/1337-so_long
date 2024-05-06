@@ -6,11 +6,16 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/03 13:11:20 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:38:28 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
+
+static void	open_coin_frames(t_data *data)
+{
+
+}
 
 static void	render_coin_frame(t_data *data, int x, int y, int frame)
 {
@@ -63,7 +68,7 @@ void	coin_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 9)
+	if (i == 9 && !data->is_over)
 	{
 		get_coin_position(data, j);
 		i = 0;

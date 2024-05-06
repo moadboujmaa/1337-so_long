@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/02 17:09:35 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:56:39 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_mlx(t_data *data)
 		print_error("Error initializing mlx window");
 	data->movements = 0;
 	data->flag_started = 0;
+	data->is_over = 0;
 	welcome_page(data);
 	mlx_key_hook(data->mlx, call_map, data);
 }

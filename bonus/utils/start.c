@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/03 15:55:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:15:54 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	call_map(mlx_key_data_t keydata, void *param)
 		mlx_key_hook(data->mlx, handle_keys, data);
 		mlx_put_string(data->mlx, "Movements:   0", 10, 10);
 	}
+	else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_ESCAPE)
+		mlx_close_window(data->mlx);
 }
 
 static void	set_background(t_data *data, mlx_image_t **img)
@@ -69,4 +71,5 @@ void	welcome_page(t_data *data)
 	pos_x = (data->width - 241) / 2;
 	pos_y = (data->height - 146) / 2;
 	mlx_image_to_window(data->mlx, img2, pos_x, pos_y);
+	mlx_delete_texture(texture);
 }

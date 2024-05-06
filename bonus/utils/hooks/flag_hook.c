@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 09:13:34 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 09:50:29 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	flag_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 8)
+	if (i == 8 && !data->is_over)
 	{
 		render_flag_frame(data, data->door_x, data->door_y, j);
 		i = 0;

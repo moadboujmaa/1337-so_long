@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/03 12:52:52 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:39:00 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_animations
 
 typedef struct s_data
 {
+	mlx_t		*mlx;
 	int			map_fd;
 	char		*tmp_map;
 	char		**map;
@@ -49,14 +50,26 @@ typedef struct s_data
 	int			player_y;
 	int			width;
 	int			height;
-	mlx_t		*mlx;
 	void		*mlx_win;
 	int			movements;
 	int			door_x;
 	int			door_y;
 	int			flag_started;
-	mlx_image_t	*img;
+	int			is_over;
+	t_frames	frames;
 }	t_data;
+
+typedef struct s_frames
+{
+	mlx_texture_t	coin_1;
+	mlx_texture_t	coin_2;
+	mlx_texture_t	coin_3;
+	mlx_texture_t	coin_4;
+	mlx_texture_t	coin_5;
+	mlx_texture_t	coin_6;
+	mlx_texture_t	coin_7;
+	int				coins_opened;
+}	t_frames;
 
 // utils/parse_map
 void	parse_map(t_data *data, char *file_name);

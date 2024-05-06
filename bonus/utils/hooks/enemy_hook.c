@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 13:30:12 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:16:11 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void	render_enemy_frame(t_data *data, int x, int y, int frame)
 		texture = mlx_load_png("./bonus/textures/enemies/enemy-5.png");
 	else if (frame == 5)
 		texture = mlx_load_png("./bonus/textures/enemies/enemy-6.png");
-    else if (frame == 6)
+	else if (frame == 6)
 		texture = mlx_load_png("./bonus/textures/enemies/enemy-4.png");
-    else if (frame == 7)
-        texture = mlx_load_png("./bonus/textures/enemies/enemy-5.png");
+	else if (frame == 7)
+		texture = mlx_load_png("./bonus/textures/enemies/enemy-5.png");
 	else if (frame == 8)
 		texture = mlx_load_png("./bonus/textures/enemies/enemy-7.png");
 	img = mlx_texture_to_image(data->mlx, texture);

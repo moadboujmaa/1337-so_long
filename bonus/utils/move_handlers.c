@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/03 16:33:16 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:35:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ static void	render_image(t_data *data, int x, int y, char type)
 
 static void	count_move(t_data *data)
 {
-	data->movements++;
-	if (data->player_x != 0)
+	if (!data->is_over)
 	{
+		data->movements++;
+		printf("player_x: %d\n", data->player_x);
 		render_image(data, 0, 0, 'a');
 		render_image(data, 0, 1, 'b');
 		render_image(data, 0, 2, 'b');
@@ -71,25 +72,29 @@ static void	count_move(t_data *data)
 
 static void	move_player(t_data *data, int x, int y)
 {
-	if (data->map[x][y] != WALL && data->map[x][y] != EXIT)
+	if (!data->is_over)
 	{
 		if (data->map[x][y] == ENEMY)
 			end_game(data, LOSE);
-		if (data->map[x][y] == COIN)
-			data->coins--;
-		get_door_pos(data);
-		data->map[data->player_x][data->player_y] = '0';
-		data->map[x][y] = 'P';
-		render_image(data, x, y, 'p');
-		render_image(data, data->player_x, data->player_y, 'g');
-		data->player_x = x;
-		data->player_y = y;
-		count_move(data);
+		if (data->map[x][y] != WALL && data->map[x][y] != EXIT
+				&& !data->is_over)
+		{
+			if (data->map[x][y] == COIN)
+				data->coins--;
+			get_door_pos(data);
+			data->map[data->player_x][data->player_y] = '0';
+			data->map[x][y] = 'P';
+			render_image(data, x, y, 'p');
+			render_image(data, data->player_x, data->player_y, 'g');
+			data->player_x = x;
+			data->player_y = y;
+			count_move(data);
+		}
+		if (data->map[x][y] == EXIT && data->coins == 0)
+			end_game(data, WIN);
+		if (!data->flag_started)
+			start_animation(data);
 	}
-	if (data->map[x][y] == EXIT && data->coins == 0)
-		end_game(data, WIN);
-	if (!data->flag_started)
-		start_animation(data);
 }
 
 void	handle_keys(mlx_key_data_t keydata, void *param)

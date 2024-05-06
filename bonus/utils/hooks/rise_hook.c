@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/01 09:25:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:05:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	rise_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 8 && !is_out)
+	if (i == 8 && !is_out && !data->is_over)
 	{
 		render_rise_frame(data, data->door_x, data->door_y, j);
 		i = 0;

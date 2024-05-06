@@ -6,10 +6,9 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:16:19 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/03 15:54:31 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:15:31 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../so_long_bonus.h"
 
@@ -34,8 +33,7 @@ static void	reset(t_data *data)
 void	end_game(t_data *data, int status)
 {
 	reset(data);
-	data->player_x = 0;
-	data->player_y = 0;
+	data->is_over = 1;
 	data->map[0][0] = PLAYER;
 	end_page(data, status);
 }
