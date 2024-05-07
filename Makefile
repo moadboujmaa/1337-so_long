@@ -13,15 +13,7 @@ CFLAGS		= -Wall -Wextra -Werror
 LIBFT_AR	= ./shared/libft/libft.a
 LIBFT		= ./shared/libft
 
-UNAME_S		= $(shell uname -s)
-
-ifeq ($(UNAME_S), linux)
-	DIFF		= -I ./include -I ./MLX42/include
-	MLX_FLAGS	= ./shared/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
-else
-	DIFF		= -Imlx
-	MLX_FLAGS	= ./shared/MLX42/build/libmlx42.a ./shared/MLX42/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
-endif
+MLX_FLAGS	= ./shared/MLX42/build/libmlx42.a ./shared/MLX42/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
 all: $(NAME)
 
@@ -52,7 +44,7 @@ bonus: $(OBJ_BONUS) $(LIBFT_AR)
 	@echo " ░░░░░░░░░     ░░░░░░░    ░░░░░░░░░ ░░░░░░░░░░░    ░░░░░░░    ░░░░░    ░░░░░   ░░░░░░░░░  "
 
 %.o: %.c ./mandatory/so_long.h ./bonus/so_long_bonus.h
-	$(CC) $(CFLAGS) $(DIFF) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	@make clean -C $(LIBFT)

@@ -6,39 +6,78 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:07:35 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/06 11:16:23 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:43:37 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
 
-static void	render_character_frame(t_data *data, int x, int y, int frame)
+static void	open_idle_textures(t_data *dt)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
+	dt->i_imgs.t_idle_1 = mlx_load_png("./bonus/textures/player/idle-1.png");
+	dt->i_imgs.t_idle_2 = mlx_load_png("./bonus/textures/player/idle-2.png");
+	dt->i_imgs.t_idle_3 = mlx_load_png("./bonus/textures/player/idle-3.png");
+	dt->i_imgs.t_idle_4 = mlx_load_png("./bonus/textures/player/idle-4.png");
+	dt->i_imgs.t_idle_5 = mlx_load_png("./bonus/textures/player/idle-5.png");
+	dt->i_imgs.t_idle_6 = mlx_load_png("./bonus/textures/player/idle-6.png");
+	dt->i_imgs.t_idle_7 = mlx_load_png("./bonus/textures/player/idle-7.png");
+	dt->i_imgs.t_idle_8 = mlx_load_png("./bonus/textures/player/idle-8.png");
+	dt->i_imgs.t_idle_9 = mlx_load_png("./bonus/textures/player/idle-9.png");
+	dt->i_imgs.t_idle_10 = mlx_load_png("./bonus/textures/player/idle-10.png");
+	if (!dt->i_imgs.t_idle_1 || !dt->i_imgs.t_idle_2 || !dt->i_imgs.t_idle_3
+		|| !dt->i_imgs.t_idle_4 || !dt->i_imgs.t_idle_5
+		|| !dt->i_imgs.t_idle_6 || !dt->i_imgs.t_idle_7
+		|| !dt->i_imgs.t_idle_8 || !dt->i_imgs.t_idle_9
+		|| !dt->i_imgs.t_idle_10)
+		print_error_f(dt, "Loading idle PNGs");
+	dt->i_imgs.idle_textures = 1;
+}
 
-	texture = NULL;
+static void	open_idle_images(t_data *dt)
+{
+	dt->i_imgs.idle_1 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_1);
+	dt->i_imgs.idle_2 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_2);
+	dt->i_imgs.idle_3 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_3);
+	dt->i_imgs.idle_4 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_4);
+	dt->i_imgs.idle_5 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_5);
+	dt->i_imgs.idle_6 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_6);
+	dt->i_imgs.idle_7 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_7);
+	dt->i_imgs.idle_8 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_8);
+	dt->i_imgs.idle_9 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_9);
+	dt->i_imgs.idle_10 = mlx_texture_to_image(dt->mlx, dt->i_imgs.t_idle_10);
+	if (!dt->i_imgs.idle_1 || !dt->i_imgs.idle_2 || !dt->i_imgs.idle_3
+		|| !dt->i_imgs.idle_4 || !dt->i_imgs.idle_5
+		|| !dt->i_imgs.idle_6 || !dt->i_imgs.idle_7
+		|| !dt->i_imgs.idle_8 || !dt->i_imgs.idle_9
+		|| !dt->i_imgs.idle_10)
+		print_error_f(dt, "idle textures to image");
+	dt->i_imgs.idle_images = 1;
+}
+
+static void	render_idle_frame(t_data *data, int x, int y, int frame)
+{
+	if (!data->i_imgs.idle_textures)
+		open_idle_textures(data);
+	if (!data->i_imgs.idle_images)
+		open_idle_images(data);
 	if (frame == 0)
-		texture = mlx_load_png("./bonus/textures/player/idle-1.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_1, y * 64, x * 64);
 	else if (frame == 1)
-		texture = mlx_load_png("./bonus/textures/player/idle-2.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_2, y * 64, x * 64);
 	else if (frame == 2)
-		texture = mlx_load_png("./bonus/textures/player/idle-3.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_3, y * 64, x * 64);
 	else if (frame == 3)
-		texture = mlx_load_png("./bonus/textures/player/idle-4.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_4, y * 64, x * 64);
 	else if (frame == 4)
-		texture = mlx_load_png("./bonus/textures/player/idle-5.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_5, y * 64, x * 64);
 	else if (frame == 5)
-		texture = mlx_load_png("./bonus/textures/player/idle-6.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_6, y * 64, x * 64);
 	else if (frame == 6)
-		texture = mlx_load_png("./bonus/textures/player/idle-7.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_7, y * 64, x * 64);
 	else if (frame == 7)
-		texture = mlx_load_png("./bonus/textures/player/idle-8.png");
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_8, y * 64, x * 64);
 	else if (frame == 8)
-		texture = mlx_load_png("./bonus/textures/player/idle-9.png");
-	img = mlx_texture_to_image(data->mlx, texture);
-	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
-	mlx_delete_texture(texture);
+		mlx_image_to_window(data->mlx, data->i_imgs.idle_9, y * 64, x * 64);
 }
 
 static void	get_character_position(t_data *data, int frame)
@@ -53,7 +92,7 @@ static void	get_character_position(t_data *data, int frame)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == PLAYER)
-				render_character_frame(data, i, j, frame);
+				render_idle_frame(data, i, j, frame);
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/06 10:36:35 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:13:24 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,10 @@
 
 static void	render_enemy_image(t_data *data, int x, int y, char type)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
-
-	texture = NULL;
 	if (type == 'e')
-		texture = mlx_load_png("./bonus/textures/enemies/enemy-1.png");
+		mlx_image_to_window(data->mlx, data->textures.enemy, y * 64, x * 64);
 	else if (type == 'g')
-		texture = mlx_load_png("./bonus/textures/ground/ground.png");
-	img = mlx_texture_to_image(data->mlx, texture);
-	if (!img)
-		print_error_f(data, "Texture to image");
-	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
-	mlx_delete_texture(texture);
+		mlx_image_to_window(data->mlx, data->textures.ground, y * 64, x * 64);
 }
 
 static void	move(t_data *data, int x, int y)

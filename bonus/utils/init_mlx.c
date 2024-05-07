@@ -6,62 +6,55 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 09:44:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:54:02 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
-static mlx_texture_t	*choose_texture(t_data *data, int x, int y)
+void	choose_image(t_data *data, int x, int y)
 {
-	mlx_texture_t	*texture;
-
 	if (x == 0 && y == 0)
-		texture = mlx_load_png("./bonus/textures/walls/top_left.png");
+		mlx_image_to_window(data->mlx, data->textures.tl, y * 64, x * 64);
 	else if (x == 0 && y == data->width / 64 - 1)
-		texture = mlx_load_png("./bonus/textures/walls/top_right.png");
+		mlx_image_to_window(data->mlx, data->textures.tr, y * 64, x * 64);
 	else if (x == data->height / 64 - 1 && y == 0)
-		texture = mlx_load_png("./bonus/textures/walls/down_left.png");
+		mlx_image_to_window(data->mlx, data->textures.dl, y * 64, x * 64);
 	else if (x == data->height / 64 - 1 && y == data->width / 64 - 1)
-		texture = mlx_load_png("./bonus/textures/walls/down_right.png");
+		mlx_image_to_window(data->mlx, data->textures.dr, y * 64, x * 64);
 	else if (x == 0)
-		texture = mlx_load_png("./bonus/textures/walls/top.png");
+		mlx_image_to_window(data->mlx, data->textures.top, y * 64, x * 64);
 	else if (y == 0)
-		texture = mlx_load_png("./bonus/textures/walls/left.png");
+		mlx_image_to_window(data->mlx, data->textures.left, y * 64, x * 64);
 	else if (y == data->width / 64 - 1)
-		texture = mlx_load_png("./bonus/textures/walls/right.png");
+		mlx_image_to_window(data->mlx, data->textures.right, y * 64, x * 64);
 	else if (x == data->height / 64 - 1)
-		texture = mlx_load_png("./bonus/textures/walls/down.png");
+		mlx_image_to_window(data->mlx, data->textures.down, y * 64, x * 64);
 	else
-		texture = mlx_load_png("./bonus/textures/walls/inside.png");
-	return (texture);
+		mlx_image_to_window(data->mlx, data->textures.inside, y * 64, x * 64);
 }
 
-static mlx_texture_t	*create_texture(t_data *data, int x, int y)
+void	put_image(t_data *data, int x, int y)
 {
-	mlx_texture_t	*texture;
 	char			pos;
 
 	pos = data->map[x][y];
 	if (pos == '1')
-		texture = choose_texture(data, x, y);
+		choose_image(data, x, y);
 	else if (pos == 'C')
-		texture = mlx_load_png("./bonus/textures/coins/coin-1.png");
+		mlx_image_to_window(data->mlx, data->textures.coin, y * 64, x * 64);
 	else if (pos == 'P')
-		texture = mlx_load_png("./bonus/textures/player/idle-1.png");
+		mlx_image_to_window(data->mlx, data->textures.player, y * 64, x * 64);
 	else if (pos == 'E')
-		texture = mlx_load_png("./bonus/textures/door/door_closed.png");
+		mlx_image_to_window(data->mlx, data->textures.exit, y * 64, x * 64);
 	else if (pos == 'Z')
-		texture = mlx_load_png("./bonus/textures/enemies/enemy-1.png");
+		mlx_image_to_window(data->mlx, data->textures.enemy, y * 64, x * 64);
 	else
-		texture = mlx_load_png("./bonus/textures/ground/ground.png");
-	return (texture);
+		mlx_image_to_window(data->mlx, data->textures.ground, y * 64, x * 64);
 }
 
 void	display_map(t_data *data)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
 	int				i;
 	int				j;
 
@@ -71,14 +64,7 @@ void	display_map(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			texture = create_texture(data, i, j);
-			if (!texture)
-				print_error("loading PNG");
-			img = mlx_texture_to_image(data->mlx, texture);
-			if (!img)
-				print_error("converting texture to image");
-			mlx_image_to_window(data->mlx, img, j * WIDTH, i * HEIGHT);
-			mlx_delete_texture(texture);
+			put_image(data, i, j);
 			j++;
 		}
 		i++;
@@ -91,13 +77,10 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init(data->width, data->height, "SO_LONG_BONUS", 0);
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
-	data->movements = 0;
-	data->flag_started = 0;
-	data->is_over = 0;
-	data->c_imgs.coin_textures = 0;
-	data->c_imgs.coin_images = 0;
-	data->e_imgs.enemy_textures = 0;
-	data->e_imgs.enemy_images = 0;
+	if (!data->textures.textures_done)
+		load_textures(data);
+	if (!data->textures.images_done)
+		load_images(data);
 	welcome_page(data);
 	mlx_key_hook(data->mlx, call_map, data);
 }

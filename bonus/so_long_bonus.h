@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 09:42:36 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:08:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_enemy_frames
 	mlx_texture_t	*t_enemy_4;
 	mlx_texture_t	*t_enemy_5;
 	mlx_texture_t	*t_enemy_6;
-	mlx_texture_t	*t_enemy_7;
 	int				enemy_textures;
 	mlx_image_t		*enemy_1;
 	mlx_image_t		*enemy_2;
@@ -46,7 +45,6 @@ typedef struct s_enemy_frames
 	mlx_image_t		*enemy_4;
 	mlx_image_t		*enemy_5;
 	mlx_image_t		*enemy_6;
-	mlx_image_t		*enemy_7;
 	int				enemy_images;
 }	t_enemy_frames;
 
@@ -69,6 +67,72 @@ typedef struct s_coin_frames
 	mlx_image_t		*coin_7;
 	int				coin_images;
 }	t_coin_frames;
+
+typedef struct s_flag_frames
+{
+	mlx_texture_t	*t_flag_1;
+	mlx_texture_t	*t_flag_2;
+	mlx_texture_t	*t_flag_3;
+	mlx_texture_t	*t_flag_4;
+	mlx_texture_t	*t_flag_5;
+	mlx_texture_t	*t_flag_6;
+	mlx_texture_t	*t_flag_7;
+	int				flag_textures;
+	mlx_image_t		*flag_1;
+	mlx_image_t		*flag_2;
+	mlx_image_t		*flag_3;
+	mlx_image_t		*flag_4;
+	mlx_image_t		*flag_5;
+	mlx_image_t		*flag_6;
+	mlx_image_t		*flag_7;
+	int				flag_images;
+}	t_flag_frames;
+
+typedef struct s_rise_frames
+{
+	mlx_texture_t	*t_rise_1;
+	mlx_texture_t	*t_rise_2;
+	mlx_texture_t	*t_rise_3;
+	mlx_texture_t	*t_rise_4;
+	mlx_texture_t	*t_rise_5;
+	mlx_texture_t	*t_rise_6;
+	mlx_texture_t	*t_rise_7;
+	int				rise_textures;
+	mlx_image_t		*rise_1;
+	mlx_image_t		*rise_2;
+	mlx_image_t		*rise_3;
+	mlx_image_t		*rise_4;
+	mlx_image_t		*rise_5;
+	mlx_image_t		*rise_6;
+	mlx_image_t		*rise_7;
+	int				rise_images;
+}	t_rise_frames;
+
+typedef struct s_idle_frames
+{
+	mlx_texture_t	*t_idle_1;
+	mlx_texture_t	*t_idle_2;
+	mlx_texture_t	*t_idle_3;
+	mlx_texture_t	*t_idle_4;
+	mlx_texture_t	*t_idle_5;
+	mlx_texture_t	*t_idle_6;
+	mlx_texture_t	*t_idle_7;
+	mlx_texture_t	*t_idle_8;
+	mlx_texture_t	*t_idle_9;
+	mlx_texture_t	*t_idle_10;
+	int				idle_textures;
+	mlx_image_t		*idle_1;
+	mlx_image_t		*idle_2;
+	mlx_image_t		*idle_3;
+	mlx_image_t		*idle_4;
+	mlx_image_t		*idle_5;
+	mlx_image_t		*idle_6;
+	mlx_image_t		*idle_7;
+	mlx_image_t		*idle_8;
+	mlx_image_t		*idle_9;
+	mlx_image_t		*idle_10;
+	int				idle_images;
+}	t_idle_frames;
 
 typedef struct s_textures
 {
@@ -128,6 +192,9 @@ typedef struct s_data
 	int				is_over;
 	t_coin_frames	c_imgs;
 	t_enemy_frames	e_imgs;
+	t_flag_frames	f_imgs;
+	t_idle_frames	i_imgs;
+	t_rise_frames	r_imgs;
 	t_textures		textures;
 }	t_data;
 

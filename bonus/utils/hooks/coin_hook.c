@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 09:43:12 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:33:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	coin_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 10)
+	if (i == 9)
 	{
 		get_coin_position(data, j);
 		i = 0;

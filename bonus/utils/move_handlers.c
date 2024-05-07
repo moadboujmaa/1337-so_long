@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 08:18:51 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:06:45 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,16 @@ static void	get_door_pos(t_data *data)
 
 static void	render_image(t_data *data, int x, int y, char type)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
-
-	texture = NULL;
 	if (type == 'g')
-		texture = mlx_load_png("./bonus/textures/ground/ground.png");
+		mlx_image_to_window(data->mlx, data->textures.ground, y * 64, x * 64);
 	else if (type == 'p')
-		texture = mlx_load_png("./bonus/textures/player/player.png");
+		mlx_image_to_window(data->mlx, data->textures.player, y * 64, x * 64);
 	else if (type == 'o')
-		texture = mlx_load_png("./bonus/textures/door/door_opened.png");
+		mlx_image_to_window(data->mlx, data->textures.exit, y * 64, x * 64);
 	else if (type == 'a')
-		texture = mlx_load_png("./bonus/textures/walls/top_left.png");
+		mlx_image_to_window(data->mlx, data->textures.tl, y * 64, x * 64);
 	else if (type == 'b')
-		texture = mlx_load_png("./bonus/textures/walls/top.png");
-	img = mlx_texture_to_image(data->mlx, texture);
-	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
-	mlx_delete_texture(texture);
+		mlx_image_to_window(data->mlx, data->textures.top, y * 64, x * 64);
 }
 
 static void	count_move(t_data *data)

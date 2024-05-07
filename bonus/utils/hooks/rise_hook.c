@@ -6,35 +6,60 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/06 10:05:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:02:13 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
 
+static void	open_rise_textures(t_data *dt)
+{
+	dt->r_imgs.t_rise_1 = mlx_load_png("./bonus/textures/door/rise-1.png");
+	dt->r_imgs.t_rise_2 = mlx_load_png("./bonus/textures/door/rise-2.png");
+	dt->r_imgs.t_rise_3 = mlx_load_png("./bonus/textures/door/rise-3.png");
+	dt->r_imgs.t_rise_4 = mlx_load_png("./bonus/textures/door/rise-4.png");
+	dt->r_imgs.t_rise_5 = mlx_load_png("./bonus/textures/door/rise-5.png");
+	dt->r_imgs.t_rise_6 = mlx_load_png("./bonus/textures/door/rise-6.png");
+	if (!dt->r_imgs.t_rise_1 || !dt->r_imgs.t_rise_2 || !dt->r_imgs.t_rise_3
+		|| !dt->r_imgs.t_rise_4 || !dt->r_imgs.t_rise_5
+		|| !dt->r_imgs.t_rise_6)
+		print_error_f(dt, "Loading rise PNGs");
+	dt->r_imgs.rise_textures = 1;
+}
+
+static void	open_rise_images(t_data *dt)
+{
+	dt->r_imgs.rise_1 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_1);
+	dt->r_imgs.rise_2 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_2);
+	dt->r_imgs.rise_3 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_3);
+	dt->r_imgs.rise_4 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_4);
+	dt->r_imgs.rise_5 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_5);
+	dt->r_imgs.rise_6 = mlx_texture_to_image(dt->mlx, dt->r_imgs.t_rise_6);
+	if (!dt->r_imgs.rise_1 || !dt->r_imgs.rise_2 || !dt->r_imgs.rise_3
+		|| !dt->r_imgs.rise_4 || !dt->r_imgs.rise_5
+		|| !dt->r_imgs.rise_6)
+		print_error_f(dt, "rise textures to image");
+	dt->r_imgs.rise_images = 1;
+}
+
 static void	render_rise_frame(t_data *data, int x, int y, int frame)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
-
-	texture = NULL;
+	if (!data->r_imgs.rise_textures)
+		open_rise_textures(data);
+	if (!data->r_imgs.rise_images)
+		open_rise_images(data);
 	if (frame == 0)
-		texture = mlx_load_png("./bonus/textures/door/rise-1.png");
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_1, y * 64, x * 64);
 	else if (frame == 1)
-		texture = mlx_load_png("./bonus/textures/door/rise-2.png");
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_2, y * 64, x * 64);
 	else if (frame == 2)
-		texture = mlx_load_png("./bonus/textures/door/rise-3.png");
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_3, y * 64, x * 64);
 	else if (frame == 3)
-		texture = mlx_load_png("./bonus/textures/door/rise-4.png");
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_4, y * 64, x * 64);
 	else if (frame == 4)
-		texture = mlx_load_png("./bonus/textures/door/rise-5.png");
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_5, y * 64, x * 64);
 	else if (frame == 5)
-		texture = mlx_load_png("./bonus/textures/door/rise-6.png");
-	else if (frame == 6)
-		texture = mlx_load_png("./bonus/textures/door/rise-7.png");
-	img = mlx_texture_to_image(data->mlx, texture);
-	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
-	mlx_delete_texture(texture);
+		mlx_image_to_window(data->mlx, data->r_imgs.rise_6, y * 64, x * 64);
 }
 
 static void	rise_hook(void *param)
