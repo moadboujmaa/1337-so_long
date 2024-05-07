@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/06 11:35:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 08:18:51 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,12 @@ static void	render_image(t_data *data, int x, int y, char type)
 
 static void	count_move(t_data *data)
 {
-	if (!data->is_over)
-	{
-		data->movements++;
-		printf("player_x: %d\n", data->player_x);
-		render_image(data, 0, 0, 'a');
-		render_image(data, 0, 1, 'b');
-		render_image(data, 0, 2, 'b');
-		mlx_put_string(data->mlx, "Movements: ", 10, 10);
-		mlx_put_string(data->mlx, ft_itoa(data->movements), 140, 10);
-	}
+	data->movements++;
+	render_image(data, 0, 0, 'a');
+	render_image(data, 0, 1, 'b');
+	render_image(data, 0, 2, 'b');
+	mlx_put_string(data->mlx, "Movements: ", 10, 10);
+	mlx_put_string(data->mlx, ft_itoa(data->movements), 140, 10);
 }
 
 static void	move_player(t_data *data, int x, int y)

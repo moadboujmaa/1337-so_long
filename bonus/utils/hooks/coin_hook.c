@@ -6,40 +6,64 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/06 12:38:28 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:43:12 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
 
-static void	open_coin_frames(t_data *data)
+static void	open_coin_textures(t_data *dt)
 {
+	dt->c_imgs.t_coin_1 = mlx_load_png("./bonus/textures/coins/coin-1.png");
+	dt->c_imgs.t_coin_2 = mlx_load_png("./bonus/textures/coins/coin-2.png");
+	dt->c_imgs.t_coin_3 = mlx_load_png("./bonus/textures/coins/coin-3.png");
+	dt->c_imgs.t_coin_4 = mlx_load_png("./bonus/textures/coins/coin-4.png");
+	dt->c_imgs.t_coin_5 = mlx_load_png("./bonus/textures/coins/coin-5.png");
+	dt->c_imgs.t_coin_6 = mlx_load_png("./bonus/textures/coins/coin-6.png");
+	dt->c_imgs.t_coin_7 = mlx_load_png("./bonus/textures/coins/coin-7.png");
+	if (!dt->c_imgs.t_coin_1 || !dt->c_imgs.t_coin_2 || !dt->c_imgs.t_coin_3
+		|| !dt->c_imgs.t_coin_4 || !dt->c_imgs.t_coin_5
+		|| !dt->c_imgs.t_coin_6 || !dt->c_imgs.t_coin_7)
+		print_error_f(dt, "Loading coin PNG's");
+	dt->c_imgs.coin_textures = 1;
+}
 
+static void	open_coin_images(t_data *dt)
+{
+	dt->c_imgs.coin_1 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_1);
+	dt->c_imgs.coin_2 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_2);
+	dt->c_imgs.coin_3 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_3);
+	dt->c_imgs.coin_4 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_4);
+	dt->c_imgs.coin_5 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_5);
+	dt->c_imgs.coin_6 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_6);
+	dt->c_imgs.coin_7 = mlx_texture_to_image(dt->mlx, dt->c_imgs.t_coin_7);
+	if (!dt->c_imgs.coin_1 || !dt->c_imgs.coin_2 || !dt->c_imgs.coin_3
+		|| !dt->c_imgs.coin_4 || !dt->c_imgs.coin_5
+		|| !dt->c_imgs.coin_6 || !dt->c_imgs.coin_7)
+		print_error_f(dt, "Coin texture to image");
+	dt->c_imgs.coin_images = 1;
 }
 
 static void	render_coin_frame(t_data *data, int x, int y, int frame)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
-
-	texture = NULL;
+	if (!data->c_imgs.coin_textures)
+		open_coin_textures(data);
+	if (!data->c_imgs.coin_images)
+		open_coin_images(data);
 	if (frame == 0)
-		texture = mlx_load_png("./bonus/textures/coins/coin-1.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_1, y * 64, x * 64);
 	else if (frame == 1)
-		texture = mlx_load_png("./bonus/textures/coins/coin-2.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_2, y * 64, x * 64);
 	else if (frame == 2)
-		texture = mlx_load_png("./bonus/textures/coins/coin-3.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_3, y * 64, x * 64);
 	else if (frame == 3)
-		texture = mlx_load_png("./bonus/textures/coins/coin-4.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_4, y * 64, x * 64);
 	else if (frame == 4)
-		texture = mlx_load_png("./bonus/textures/coins/coin-5.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_5, y * 64, x * 64);
 	else if (frame == 5)
-		texture = mlx_load_png("./bonus/textures/coins/coin-6.png");
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_6, y * 64, x * 64);
 	else if (frame == 6)
-		texture = mlx_load_png("./bonus/textures/coins/coin-7.png");
-	img = mlx_texture_to_image(data->mlx, texture);
-	mlx_image_to_window(data->mlx, img, y * 64, x * 64);
-	mlx_delete_texture(texture);
+		mlx_image_to_window(data->mlx, data->c_imgs.coin_7, y * 64, x * 64);
 }
 
 static void	get_coin_position(t_data *data, int frame)
@@ -48,6 +72,7 @@ static void	get_coin_position(t_data *data, int frame)
 	int	j;
 
 	i = 0;
+	j = 0;
 	while (data->map[i])
 	{
 		j = 0;
@@ -68,7 +93,7 @@ void	coin_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 9 && !data->is_over)
+	if (i == 10)
 	{
 		get_coin_position(data, j);
 		i = 0;

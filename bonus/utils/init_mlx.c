@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/06 10:56:39 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:44:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ void	init_mlx(t_data *data)
 	data->movements = 0;
 	data->flag_started = 0;
 	data->is_over = 0;
+	data->c_imgs.coin_textures = 0;
+	data->c_imgs.coin_images = 0;
+	data->e_imgs.enemy_textures = 0;
+	data->e_imgs.enemy_images = 0;
 	welcome_page(data);
 	mlx_key_hook(data->mlx, call_map, data);
 }

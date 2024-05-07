@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/06 12:39:00 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:42:36 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,46 +30,106 @@
 # define WIN		1
 # define LOSE		0
 
-typedef struct s_animations
+typedef struct s_enemy_frames
 {
-	int	flag_i;
-	int	flag_j;
-}	t_animations;
+	mlx_texture_t	*t_enemy_1;
+	mlx_texture_t	*t_enemy_2;
+	mlx_texture_t	*t_enemy_3;
+	mlx_texture_t	*t_enemy_4;
+	mlx_texture_t	*t_enemy_5;
+	mlx_texture_t	*t_enemy_6;
+	mlx_texture_t	*t_enemy_7;
+	int				enemy_textures;
+	mlx_image_t		*enemy_1;
+	mlx_image_t		*enemy_2;
+	mlx_image_t		*enemy_3;
+	mlx_image_t		*enemy_4;
+	mlx_image_t		*enemy_5;
+	mlx_image_t		*enemy_6;
+	mlx_image_t		*enemy_7;
+	int				enemy_images;
+}	t_enemy_frames;
 
+typedef struct s_coin_frames
+{
+	mlx_texture_t	*t_coin_1;
+	mlx_texture_t	*t_coin_2;
+	mlx_texture_t	*t_coin_3;
+	mlx_texture_t	*t_coin_4;
+	mlx_texture_t	*t_coin_5;
+	mlx_texture_t	*t_coin_6;
+	mlx_texture_t	*t_coin_7;
+	int				coin_textures;
+	mlx_image_t		*coin_1;
+	mlx_image_t		*coin_2;
+	mlx_image_t		*coin_3;
+	mlx_image_t		*coin_4;
+	mlx_image_t		*coin_5;
+	mlx_image_t		*coin_6;
+	mlx_image_t		*coin_7;
+	int				coin_images;
+}	t_coin_frames;
+
+typedef struct s_textures
+{
+	mlx_texture_t	*tground;
+	mlx_texture_t	*tplayer;
+	mlx_texture_t	*tenemy;
+	mlx_texture_t	*tcoin;
+	mlx_texture_t	*texit;
+	mlx_texture_t	*ttop;
+	mlx_texture_t	*tdown;
+	mlx_texture_t	*tinside;
+	mlx_texture_t	*tleft;
+	mlx_texture_t	*tright;
+	mlx_texture_t	*ttl;
+	mlx_texture_t	*tdl;
+	mlx_texture_t	*ttr;
+	mlx_texture_t	*tdr;
+	int				textures_done;
+	mlx_image_t		*ground;
+	mlx_image_t		*player;
+	mlx_image_t		*enemy;
+	mlx_image_t		*coin;
+	mlx_image_t		*exit;
+	mlx_image_t		*top;
+	mlx_image_t		*down;
+	mlx_image_t		*inside;
+	mlx_image_t		*left;
+	mlx_image_t		*right;
+	mlx_image_t		*tl;
+	mlx_image_t		*dl;
+	mlx_image_t		*tr;
+	mlx_image_t		*dr;
+	int				images_done;
+}	t_textures;
+
+
+// c_imgs = coin_images
 typedef struct s_data
 {
-	mlx_t		*mlx;
-	int			map_fd;
-	char		*tmp_map;
-	char		**map;
-	char		**map_copy;
-	int			coins;
-	int			player;
-	int			exit;
-	int			player_x;
-	int			player_y;
-	int			width;
-	int			height;
-	void		*mlx_win;
-	int			movements;
-	int			door_x;
-	int			door_y;
-	int			flag_started;
-	int			is_over;
-	t_frames	frames;
+	mlx_t			*mlx;
+	int				map_fd;
+	char			*tmp_map;
+	char			**map;
+	char			**map_copy;
+	int				coins;
+	int				player;
+	int				exit;
+	int				player_x;
+	int				player_y;
+	int				width;
+	int				height;
+	void			*mlx_win;
+	int				movements;
+	int				door_x;
+	int				door_y;
+	int				flag_started;
+	int				is_over;
+	t_coin_frames	c_imgs;
+	t_enemy_frames	e_imgs;
+	t_textures		textures;
 }	t_data;
-
-typedef struct s_frames
-{
-	mlx_texture_t	coin_1;
-	mlx_texture_t	coin_2;
-	mlx_texture_t	coin_3;
-	mlx_texture_t	coin_4;
-	mlx_texture_t	coin_5;
-	mlx_texture_t	coin_6;
-	mlx_texture_t	coin_7;
-	int				coins_opened;
-}	t_frames;
 
 // utils/parse_map
 void	parse_map(t_data *data, char *file_name);
@@ -104,6 +164,10 @@ void	coin_hook(void *param);
 void	idle_hook(void *param);
 void	enemy_hook(void *param);
 void	move_enemies(void *param);
+
+// utils/load_images
+void	load_textures(t_data *dt);
+void	load_images(t_data *dt);
 
 void	lose(t_data *data);
 
