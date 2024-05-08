@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 12:22:04 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:19:26 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	load_textures(t_data *dt)
 		|| !dt->textures.tcoin || !dt->textures.texit || !dt->textures.tenemy
 		|| !dt->textures.tdown || !dt->textures.tleft || !dt->textures.tright
 		|| !dt->textures.ttl || !dt->textures.ttr || !dt->textures.tdl
-		|| !dt->textures.tdr)
+		|| !dt->textures.tdr || !dt->textures.tinside)
 		print_error_f(dt, "Loading textures PNG's");
 	dt->textures.textures_done = 1;
 }
@@ -59,5 +59,6 @@ void	load_images(t_data *dt)
 		|| !dt->textures.tl || !dt->textures.tr || !dt->textures.dl
 		|| !dt->textures.dr)
 		print_error_f(dt, "Textures texture to image");
+	free_textures(&(dt->textures));
 	dt->textures.images_done = 1;
 }

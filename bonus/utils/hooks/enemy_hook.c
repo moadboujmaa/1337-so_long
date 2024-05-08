@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 13:01:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:27:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	open_enemy_images(t_data *dt)
 		|| !dt->e_imgs.enemy_6)
 		print_error_f(dt, "Enemy textures to image");
 	dt->e_imgs.enemy_images = 1;
+	free_enemy(&(dt->e_imgs));
 }
 
 

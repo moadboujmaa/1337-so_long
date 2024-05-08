@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 22:00:39 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 13:33:19 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:25:00 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	open_coin_images(t_data *dt)
 		|| !dt->c_imgs.coin_4 || !dt->c_imgs.coin_5
 		|| !dt->c_imgs.coin_6 || !dt->c_imgs.coin_7)
 		print_error_f(dt, "Coin texture to image");
+	free_coins(&(dt->c_imgs));
 	dt->c_imgs.coin_images = 1;
 }
 
@@ -93,7 +94,7 @@ void	coin_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 9)
+	if (i == 7)
 	{
 		get_coin_position(data, j);
 		i = 0;

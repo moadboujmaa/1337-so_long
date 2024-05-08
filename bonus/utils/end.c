@@ -6,13 +6,13 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/06 09:38:37 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:34:22 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
-static void	set_background(t_data *data, mlx_image_t **img)
+static void	set_background(t_data *data, mlx_image_t *img)
 {
 	int	i;
 	int	j;
@@ -23,7 +23,7 @@ static void	set_background(t_data *data, mlx_image_t **img)
 		j = 0;
 		while (j < data->height)
 		{
-			mlx_put_pixel(*img, i, j, 0x211F30FF);
+			mlx_put_pixel(img, i, j, 0x211F30FF);
 			j++;
 		}
 		i++;
@@ -41,15 +41,16 @@ void	end_page(t_data *data, int status)
 	img = mlx_new_image(data->mlx, data->width, data->height);
 	if (!img)
 		print_error_f(data, "new image");
-	set_background(data, &img);
+	set_background(data, img);
 	mlx_image_to_window(data->mlx, img, 0, 0);
 	if (status == WIN)
 		texture = mlx_load_png("./bonus/textures/additional/you_win.png");
 	else
 		texture = mlx_load_png("./bonus/textures/additional/you_lose.png");
 	if (!texture)
-		print_error_f(data, "Image not found");
+		print_error_f(data, "End image not found");
 	img2 = mlx_texture_to_image(data->mlx, texture);
+	mlx_delete_texture(texture);
 	pos_x = (data->width - 316) / 2;
 	pos_y = (data->height - 95) / 2;
 	mlx_image_to_window(data->mlx, img2, pos_x, pos_y);

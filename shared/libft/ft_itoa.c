@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboujamaa <mboujamaa@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:05:41 by mboujama          #+#    #+#             */
-/*   Updated: 2023/12/17 22:05:19 by mboujamaa        ###   ########.fr       */
+/*   Updated: 2024/05/08 12:19:53 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,3 @@ char	*ft_itoa(int n)
 	}
 	return (ptr);
 }
-
-// int	main(void)
-// {
-// 	printf("%s\n", ft_itoa(12345));
-// }

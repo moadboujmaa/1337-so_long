@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 13:13:24 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:31:49 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,78 @@ static void	render_enemy_image(t_data *data, int x, int y, char type)
 		mlx_image_to_window(data->mlx, data->textures.ground, y * 64, x * 64);
 }
 
-static void	move(t_data *data, int x, int y)
+static void	move_horizontal(t_data *data, int x, int y)
 {
-	data->map[x][y] = 'Z';
-	render_enemy_image(data, x, y, 'e');
+	static int	i;
+
+	printf("x = %d | y = %d\n", x, y);
+	if (i <= 3)
+	{
+		printf("%d\n", i);
+		if (data->map[x][y + 1] != WALL)
+		{
+			data->map[x][y + 1] = ENEMY;
+			data->map[x][y] = EMPTY;
+			render_enemy_image(data, x, y, 'g');
+			render_enemy_image(data, x, y + 1, 'e');
+		}
+		i++;
+	}
+	else
+	{
+		printf("%d\n", i);
+		if (data->map[x][y - 1] != WALL)
+		{
+			data->map[x][y - 1] = ENEMY;
+			data->map[x][y] = EMPTY;
+			render_enemy_image(data, x, y, 'g');
+			render_enemy_image(data, x, y - 1, 'e');
+		}
+		if (i == 6)
+			i = 0;
+		i++;
+	}
+}
+
+static void	move_vertical(t_data *data, int x, int y)
+{
+	static int	i;
+
+	printf("x = %d | y = %d\n", x, y);
+	if (i <= 3)
+	{
+		printf("%d\n", i);
+		if (data->map[x + 1][y] != WALL)
+		{
+			data->map[x + 1][y] = ENEMY;
+			data->map[x][y] = EMPTY;
+			render_enemy_image(data, x, y, 'g');
+			render_enemy_image(data, x + 1, y, 'e');
+		}
+		i++;
+	}
+	else
+	{
+		printf("%d\n", i);
+		if (data->map[x - 1][y] != WALL)
+		{
+			data->map[x - 1][y] = ENEMY;
+			data->map[x][y] = EMPTY;
+			render_enemy_image(data, x, y, 'g');
+			render_enemy_image(data, x - 1, y, 'e');
+		}
+		if (i == 6)
+			i = 0;
+		i++;
+	}
 }
 
 static void	random_direction(t_data *data, int x, int y)
 {
-	if (data->map[x + 1][y] != WALL && data->map[x + 1][y] != EXIT)
-		move(data, x + 1, y);
-	else if (data->map[x][y + 1] != WALL && data->map[x][y + 1] != EXIT)
-		move(data, x, y + 1);
-	else if (data->map[x - 1][y] != WALL && data->map[x - 1][y] != EXIT)
-		move(data, x - 1, y);
-	else if (data->map[x][y - 1] != WALL && data->map[x][y - 1] != EXIT)
-		move(data, x, y - 1);
-	data->map[x][y] = '0';
-	render_enemy_image(data, x, y, 'g');
-	printf("x = %d | y =  %d\n", x, y);
+	if (data->map[x][y - 1] != WALL || data->map[x][y + 1] != WALL)
+		move_horizontal(data, x, y);
+	else if (data->map[x - 1][y] != WALL || data->map[x + 1][y] != WALL)
+		move_vertical(data, x, y);
 }
 
 void	move_enemies(void *param)

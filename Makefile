@@ -2,7 +2,7 @@ NAME		= so_long
 NAME_BONUS	= so_long_bonus
 
 SRC			= ./mandatory/so_long.c ./mandatory/utils/parse_map.c ./mandatory/utils/free_and_errors.c ./mandatory/utils/map_checks.c ./mandatory/utils/map_checks_2.c ./mandatory/utils/init_mlx.c ./mandatory/utils/move_handlers.c
-SRC_BONUS	= ./bonus/so_long_bonus.c ./bonus/utils/parse_map.c ./bonus/utils/free_and_errors.c ./bonus/utils/map_checks.c ./bonus/utils/map_checks_2.c ./bonus/utils/init_mlx.c ./bonus/utils/move_handlers.c ./bonus/utils/hooks/flag_hook.c ./bonus/utils/hooks/coin_hook.c ./bonus/utils/hooks/rise_hook.c ./bonus/utils/hooks/idle_hook.c ./bonus/utils/hooks/enemy_hook.c ./bonus/utils/hooks/move_enemies.c ./bonus/utils/end_game.c ./bonus/utils/start.c ./bonus/utils/end.c ./bonus/utils/load_images.c
+SRC_BONUS	= ./bonus/so_long_bonus.c ./bonus/utils/parse_map.c ./bonus/utils/free_and_errors.c ./bonus/utils/map_checks.c ./bonus/utils/map_checks_2.c ./bonus/utils/init_mlx.c ./bonus/utils/move_handlers.c ./bonus/utils/hooks/flag_hook.c ./bonus/utils/hooks/coin_hook.c ./bonus/utils/hooks/rise_hook.c ./bonus/utils/hooks/idle_hook.c ./bonus/utils/hooks/enemy_hook.c ./bonus/utils/hooks/move_enemies.c ./bonus/utils/end_game.c ./bonus/utils/start.c ./bonus/utils/end.c ./bonus/utils/load_images.c ./bonus/utils/hooks/free_textures.c ./bonus/utils/hooks/free_textures_2.c
 
 OBJ			= $(SRC:.c=.o)
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)

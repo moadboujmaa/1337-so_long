@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:07:35 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 10:43:37 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:33:41 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	open_idle_images(t_data *dt)
 		|| !dt->i_imgs.idle_10)
 		print_error_f(dt, "idle textures to image");
 	dt->i_imgs.idle_images = 1;
+	free_idle(&(dt->i_imgs));
 }
 
 static void	render_idle_frame(t_data *data, int x, int y, int frame)

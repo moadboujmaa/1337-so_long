@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 10:44:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:22:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	open_flag_images(t_data *dt)
 		|| !dt->f_imgs.flag_6 || !dt->f_imgs.flag_7)
 		print_error_f(dt, "flag textures to image");
 	dt->f_imgs.flag_images = 1;
+	free_flag(&(dt->f_imgs));
 }
 
 static void	render_flag_frame(t_data *data, int x, int y, int frame)

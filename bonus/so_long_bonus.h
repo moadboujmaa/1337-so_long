@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 13:08:22 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:12:03 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct s_rise_frames
 	mlx_texture_t	*t_rise_4;
 	mlx_texture_t	*t_rise_5;
 	mlx_texture_t	*t_rise_6;
-	mlx_texture_t	*t_rise_7;
 	int				rise_textures;
 	mlx_image_t		*rise_1;
 	mlx_image_t		*rise_2;
@@ -104,7 +103,6 @@ typedef struct s_rise_frames
 	mlx_image_t		*rise_4;
 	mlx_image_t		*rise_5;
 	mlx_image_t		*rise_6;
-	mlx_image_t		*rise_7;
 	int				rise_images;
 }	t_rise_frames;
 
@@ -167,7 +165,6 @@ typedef struct s_textures
 	mlx_image_t		*dr;
 	int				images_done;
 }	t_textures;
-
 
 // c_imgs = coin_images
 typedef struct s_data
@@ -242,10 +239,16 @@ void	lose(t_data *data);
 void	call_map(mlx_key_data_t keydata, void *param);
 void	welcome_page(t_data *data);
 
+// utils/hooks/free_textures
+void	free_coins(t_coin_frames *c_imgs);
+void	free_enemy(t_enemy_frames *e_imgs);
+void	free_flag(t_flag_frames *f_imgs);
+void	free_rise(t_rise_frames *r_imgs);
+void	free_idle(t_idle_frames *i_imgs);
+void	free_textures(t_textures *t_imgs);
+
 // end
 void	end_page(t_data *data, int status);
-
-// end_game
 void	end_game(t_data *data, int status);
 
 #endif

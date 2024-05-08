@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 12:06:45 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:21:48 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,16 @@ static void	render_image(t_data *data, int x, int y, char type)
 
 static void	count_move(t_data *data)
 {
+	char	*str;
+
 	data->movements++;
 	render_image(data, 0, 0, 'a');
 	render_image(data, 0, 1, 'b');
 	render_image(data, 0, 2, 'b');
 	mlx_put_string(data->mlx, "Movements: ", 10, 10);
-	mlx_put_string(data->mlx, ft_itoa(data->movements), 140, 10);
+	str = ft_itoa(data->movements);
+	mlx_put_string(data->mlx, str, 140, 10);
+	free(str);
 }
 
 static void	move_player(t_data *data, int x, int y)

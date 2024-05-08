@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:50 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 11:02:13 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:07:35 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	open_rise_images(t_data *dt)
 		|| !dt->r_imgs.rise_6)
 		print_error_f(dt, "rise textures to image");
 	dt->r_imgs.rise_images = 1;
+	free_rise(&(dt->r_imgs));
 }
 
 static void	render_rise_frame(t_data *data, int x, int y, int frame)
