@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/07 16:27:15 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:13:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	enemy_hook(void *param)
 	t_data		*data;
 
 	data = param;
-	if (i == 9)
+	if (i == 9 && !data->is_over)
 	{
 		get_enemy_position(data, j);
 		i = 0;

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 13:53:57 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:54:28 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,11 @@ void	check_routes(t_data *data, int x_pos, int y_pos)
 	pos = data->map_copy[x_pos][y_pos];
 	if (pos == WALL || pos == CHECKED)
 		return ;
-	data->map_copy[x_pos][y_pos] = CHECKED;
+	printf("%c\n", data->map_copy[x_pos][y_pos]);
+	if (data->map_copy[x_pos][y_pos] == EXIT)
+		data->map_copy[x_pos][y_pos] = WALL;
+	else
+		data->map_copy[x_pos][y_pos] = CHECKED;
 	check_routes(data, x_pos + 1, y_pos);
 	check_routes(data, x_pos, y_pos - 1);
 	check_routes(data, x_pos, y_pos + 1);

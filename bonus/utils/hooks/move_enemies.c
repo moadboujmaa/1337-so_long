@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 15:31:49 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:11:38 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	move_horizontal(t_data *data, int x, int y)
 {
 	static int	i;
 
-	printf("x = %d | y = %d\n", x, y);
+	printf("%d\n", i);
 	if (i <= 3)
 	{
 		printf("%d\n", i);

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/08 16:10:24 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:13:31 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	call_map(mlx_key_data_t keydata, void *param)
 		display_map(data);
 		mlx_loop_hook(data->mlx, idle_hook, data);
 		mlx_loop_hook(data->mlx, enemy_hook, data);
-		// mlx_loop_hook(data->mlx, move_enemies, data);
+		mlx_loop_hook(data->mlx, move_enemies, data);
 		mlx_key_hook(data->mlx, handle_keys, data);
 		mlx_put_string(data->mlx, "Movements:   0", 10, 10);
 	}

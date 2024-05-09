@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/01 13:10:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:52:02 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,6 @@ static void	open_file(t_data *data, char *file_name)
 	if (data->map_fd == -1)
 		print_error("Map file doesn't exist");
 	data->tmp_map = ft_strdup("");
-}
-
-static void	switch_exit(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (data->map_copy[i])
-	{
-		j = 0;
-		while (data->map_copy[i][j])
-		{
-			if (data->map_copy[i][j] == EXIT)
-				data->map_copy[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
 }
 
 void	parse_map(t_data *data, char *file_name)
@@ -56,7 +37,6 @@ void	parse_map(t_data *data, char *file_name)
 	data->map = ft_split(data->tmp_map, '\n');
 	data->map_copy = ft_split(data->tmp_map, '\n');
 	free(data->tmp_map);
-	switch_exit(data);
 	check_len(data);
 	check_chars(data, "01PCEZ");
 	check_walls(data, ft_arrsize(data->map), ft_strlen(data->map[0]));

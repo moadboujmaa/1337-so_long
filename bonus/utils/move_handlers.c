@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/08 16:21:48 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:13:52 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static void	move_player(t_data *data, int x, int y)
 	{
 		if (data->map[x][y] == ENEMY)
 			end_game(data, LOSE);
+		if (data->map[x][y] == EXIT && data->coins == 0)
+			end_game(data, WIN);
 		if (data->map[x][y] != WALL && data->map[x][y] != EXIT
 				&& !data->is_over)
 		{
@@ -83,8 +85,6 @@ static void	move_player(t_data *data, int x, int y)
 			data->player_y = y;
 			count_move(data);
 		}
-		if (data->map[x][y] == EXIT && data->coins == 0)
-			end_game(data, WIN);
 		if (!data->flag_started)
 			start_animation(data);
 	}

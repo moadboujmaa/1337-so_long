@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/08 12:08:14 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:12:32 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	free_flag(t_flag_frames *f_imgs)
 	mlx_delete_texture(f_imgs->t_flag_4);
 	mlx_delete_texture(f_imgs->t_flag_5);
 	mlx_delete_texture(f_imgs->t_flag_6);
+	mlx_delete_texture(f_imgs->t_flag_7);
 }
 
 void	free_rise(t_rise_frames *r_imgs)
