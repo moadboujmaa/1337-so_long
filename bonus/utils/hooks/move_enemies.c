@@ -6,92 +6,54 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/09 14:11:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:40:23 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long_bonus.h"
 
-static void	render_enemy_image(t_data *data, int x, int y, char type)
+static int	get_random(void)
 {
-	if (type == 'e')
-		mlx_image_to_window(data->mlx, data->textures.enemy, y * 64, x * 64);
-	else if (type == 'g')
-		mlx_image_to_window(data->mlx, data->textures.ground, y * 64, x * 64);
+	int	random_number;
+
+	random_number = rand() % 4 + 1;
+	return (random_number);
 }
 
-static void	move_horizontal(t_data *data, int x, int y)
+static void	render_enemy_image(t_data *data, int x, int y, t_old_pos pos)
 {
-	static int	i;
-
-	printf("%d\n", i);
-	if (i <= 3)
+	if (data->map[x][y] != WALL && data->map[x][y] != COIN
+		&& data->map[x][y] != EXIT && data->map[x][y] != ENEMY
+		&& data->map[x][y] != PLAYER)
 	{
-		printf("%d\n", i);
-		if (data->map[x][y + 1] != WALL)
-		{
-			data->map[x][y + 1] = ENEMY;
-			data->map[x][y] = EMPTY;
-			render_enemy_image(data, x, y, 'g');
-			render_enemy_image(data, x, y + 1, 'e');
-		}
-		i++;
+		mlx_image_to_window(data->mlx, data->textures.ground,
+			pos.y * 64, pos.x * 64);
+		mlx_image_to_window(data->mlx, data->textures.enemy,
+			y * 64, x * 64);
+		data->map[x][y] = ENEMY;
+		data->map[pos.x][pos.y] = EMPTY;
 	}
-	else
-	{
-		printf("%d\n", i);
-		if (data->map[x][y - 1] != WALL)
-		{
-			data->map[x][y - 1] = ENEMY;
-			data->map[x][y] = EMPTY;
-			render_enemy_image(data, x, y, 'g');
-			render_enemy_image(data, x, y - 1, 'e');
-		}
-		if (i == 6)
-			i = 0;
-		i++;
-	}
+	else if (data->map[x][y] == PLAYER)
+		end_game(data, LOSE);
 }
 
-static void	move_vertical(t_data *data, int x, int y)
+// random number: TOP = 1; RIGHT = 2; DOWN = 3; LEFT = 4
+static void	move(t_data *data, int x, int y)
 {
-	static int	i;
+	int			rand;
+	t_old_pos	pos;
 
-	printf("x = %d | y = %d\n", x, y);
-	if (i <= 3)
-	{
-		printf("%d\n", i);
-		if (data->map[x + 1][y] != WALL)
-		{
-			data->map[x + 1][y] = ENEMY;
-			data->map[x][y] = EMPTY;
-			render_enemy_image(data, x, y, 'g');
-			render_enemy_image(data, x + 1, y, 'e');
-		}
-		i++;
-	}
-	else
-	{
-		printf("%d\n", i);
-		if (data->map[x - 1][y] != WALL)
-		{
-			data->map[x - 1][y] = ENEMY;
-			data->map[x][y] = EMPTY;
-			render_enemy_image(data, x, y, 'g');
-			render_enemy_image(data, x - 1, y, 'e');
-		}
-		if (i == 6)
-			i = 0;
-		i++;
-	}
-}
-
-static void	random_direction(t_data *data, int x, int y)
-{
-	if (data->map[x][y - 1] != WALL || data->map[x][y + 1] != WALL)
-		move_horizontal(data, x, y);
-	else if (data->map[x - 1][y] != WALL || data->map[x + 1][y] != WALL)
-		move_vertical(data, x, y);
+	pos.x = x;
+	pos.y = y;
+	rand = get_random();
+	if (rand == 1)
+		render_enemy_image(data, x - 1, y, pos);
+	else if (rand == 2)
+		render_enemy_image(data, x, y + 1, pos);
+	else if (rand == 3)
+		render_enemy_image(data, x + 1, y, pos);
+	else if (rand == 4)
+		render_enemy_image(data, x, y - 1, pos);
 }
 
 void	move_enemies(void *param)
@@ -103,7 +65,7 @@ void	move_enemies(void *param)
 
 	i = 0;
 	data = param;
-	if (time == 70 && !data->is_over)
+	if (time == 60 && !data->is_over)
 	{
 		while (data->map[i])
 		{
@@ -111,7 +73,7 @@ void	move_enemies(void *param)
 			while (data->map[i][j])
 			{
 				if (data->map[i][j] == ENEMY)
-					random_direction(data, i, j);
+					move(data, i, j);
 				j++;
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/07 14:54:02 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:08:44 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	display_map(t_data *data)
 
 void	init_mlx(t_data *data)
 {
-	data->mlx = mlx_init(data->width, data->height, "SO_LONG_BONUS", 0);
+	data->mlx = mlx_init(data->width, data->height, "SO_LONG_BONUS", 1);
 	if (!data->mlx)
 		print_error("Error initializing mlx window");
 	if (!data->textures.textures_done)

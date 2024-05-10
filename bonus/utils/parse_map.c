@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/09 10:52:02 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:25:11 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void	open_file(t_data *data, char *file_name)
 
 void	parse_map(t_data *data, char *file_name)
 {
-	char	*str;
-
 	open_file(data, file_name);
-	str = get_next_line(data->map_fd);
-	while (str)
+	data->str = get_next_line(data->map_fd);
+	if (!data->str)
+		print_error("Map empty");
+	while (data->str)
 	{
-		if (str[0] == '\n')
+		if (data->str[0] == '\n')
 			print_error("empty line in map");
-		data->tmp_map = ft_strjoin(data->tmp_map, str);
-		free(str);
-		str = get_next_line(data->map_fd);
+		data->tmp_map = ft_strjoin(data->tmp_map, data->str);
+		free(data->str);
+		data->str = get_next_line(data->map_fd);
 	}
 	data->map = ft_split(data->tmp_map, '\n');
 	data->map_copy = ft_split(data->tmp_map, '\n');
@@ -45,4 +45,5 @@ void	parse_map(t_data *data, char *file_name)
 	check_accessibility(data);
 	data->width = ft_strlen(data->map[0]) * 64;
 	data->height = ft_arrsize(data->map) * 64;
+	check_display(data);
 }

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/09 11:00:17 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 10:59:13 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	end_page(t_data *data, int status)
 	pos_x = (data->width - 316) / 2;
 	pos_y = (data->height - 95) / 2;
 	mlx_image_to_window(data->mlx, img2, pos_x, pos_y);
-	printf("test1\n");
 }

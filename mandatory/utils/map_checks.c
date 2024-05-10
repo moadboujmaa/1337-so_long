@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 13:54:04 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:54:56 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	check_file_ext(char *file_name)
 {
-	int		len;
+	int		start;
 
-	len = ft_strlen(file_name);
-	if (ft_strnstr(file_name, ".ber", len))
-		return (1);
-	return (0);
+	start = strlen(file_name) - 4;
+	if (ft_strncmp(file_name + start, ".ber", 4))
+		return (0);
+	return (1);
 }
 
 void	check_len(t_data *data)
@@ -78,4 +78,10 @@ void	check_walls(t_data *data, int arr_len, int str_len)
 			print_error_f(data, "Map not surrounded by walls");
 		i++;
 	}
+}
+
+void	check_display(t_data *data)
+{
+	if (data->width > 2560 || data->height > 1344)
+		print_error_f(data, "Map is too big");
 }

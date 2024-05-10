@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/04/29 15:45:46 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:14:34 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int			movements;
 	int			door_x;
 	int			door_y;
+	char		*str;
 	mlx_image_t	*img;
 }	t_data;
 
@@ -60,6 +61,7 @@ int		check_file_ext(char *file_name);
 void	check_len(t_data *data);
 void	check_walls(t_data *data, int arr_len, int str_len);
 void	check_chars(t_data *data, char *set);
+void	check_display(t_data *data);
 
 // utils/map_checks_2
 void	count_items(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/08 13:12:03 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:17:01 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 
 # define WIN		1
 # define LOSE		0
+
+typedef struct s_old_pos
+{
+	int	x;
+	int	y;
+}	t_old_pos;
 
 typedef struct s_enemy_frames
 {
@@ -187,6 +193,7 @@ typedef struct s_data
 	int				door_y;
 	int				flag_started;
 	int				is_over;
+	char			*str;
 	t_coin_frames	c_imgs;
 	t_enemy_frames	e_imgs;
 	t_flag_frames	f_imgs;
@@ -203,13 +210,14 @@ int		check_file_ext(char *file_name);
 void	check_len(t_data *data);
 void	check_walls(t_data *data, int arr_len, int str_len);
 void	check_chars(t_data *data, char *set);
+void	check_display(t_data *data);
 
 // utils/map_checks_2
 void	count_items(t_data *data);
 void	check_routes(t_data *data, int x_po, int y_pos);
 void	check_accessibility(t_data *data);
 
-// utils/inti_mlx
+// utils/init_mlx
 void	init_mlx(t_data *data);
 
 // utils/errors
