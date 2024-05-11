@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/09 10:13:38 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:10:24 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	open_enemy_images(t_data *dt)
 	dt->e_imgs.enemy_images = 1;
 	free_enemy(&(dt->e_imgs));
 }
-
 
 static void	render_enemy_frame(t_data *data, int x, int y, int frame)
 {

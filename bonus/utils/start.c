@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/10 11:09:36 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 11:45:48 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ void	welcome_page(t_data *data)
 	set_background(data, &img);
 	mlx_image_to_window(data->mlx, img, 0, 0);
 	texture = mlx_load_png("./bonus/textures/additional/welcome.png");
+	if (!texture)
+		print_error_f(data, "Welcome PNG");
 	img2 = mlx_texture_to_image(data->mlx, texture);
+	if (!img2)
+		print_error_f(data, "Welcome image");
 	pos_x = (data->width - 241) / 2;
 	pos_y = (data->height - 146) / 2;
 	mlx_image_to_window(data->mlx, img2, pos_x, pos_y);

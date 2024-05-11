@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/09 09:47:27 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:32:19 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	display_map(t_data *data)
 		{
 			texture = create_texture(data, i, j);
 			if (!texture)
-				print_error("loading PNG");
+				print_error(ft_strjoin(ft_itoa(i), ft_itoa(j)));
 			img = mlx_texture_to_image(data->mlx, texture);
 			if (!img)
 				print_error("converting texture to image");

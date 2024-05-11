@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:21:52 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/08 11:17:54 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 11:59:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ void	free_textures(t_textures *t_imgs)
 	mlx_delete_texture(t_imgs->tdl);
 	mlx_delete_texture(t_imgs->ttr);
 	mlx_delete_texture(t_imgs->tdr);
+	mlx_delete_texture(t_imgs->twin);
+	mlx_delete_texture(t_imgs->tlose);
 }

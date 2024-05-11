@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:02:51 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/10 16:40:23 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:10:39 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@ static void	render_enemy_image(t_data *data, int x, int y, t_old_pos pos)
 }
 
 // random number: TOP = 1; RIGHT = 2; DOWN = 3; LEFT = 4
-static void	move(t_data *data, int x, int y)
+static int	move(t_data *data, int *x, int *y)
 {
 	int			rand;
 	t_old_pos	pos;
 
-	pos.x = x;
-	pos.y = y;
+	pos.x = *x;
+	pos.y = *y;
 	rand = get_random();
 	if (rand == 1)
-		render_enemy_image(data, x - 1, y, pos);
+		render_enemy_image(data, *x - 1, *y, pos);
 	else if (rand == 2)
-		render_enemy_image(data, x, y + 1, pos);
+		return (render_enemy_image(data, *x, ++(*y), pos), 1);
 	else if (rand == 3)
-		render_enemy_image(data, x + 1, y, pos);
+		render_enemy_image(data, ++(*x), *y, pos);
 	else if (rand == 4)
-		render_enemy_image(data, x, y - 1, pos);
+		render_enemy_image(data, *x, *y - 1, pos);
+	return (0);
 }
 
 void	move_enemies(void *param)
@@ -63,17 +64,19 @@ void	move_enemies(void *param)
 	int			i;
 	int			j;
 
-	i = 0;
 	data = param;
-	if (time == 60 && !data->is_over)
+	if (time == 50 && !data->is_over)
 	{
+		i = 0;
 		while (data->map[i])
 		{
 			j = 0;
 			while (data->map[i][j])
 			{
 				if (data->map[i][j] == ENEMY)
-					move(data, i, j);
+				{
+					move(data, &i, &j);
+				}
 				j++;
 			}
 			i++;

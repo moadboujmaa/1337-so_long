@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/08 11:19:26 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:25:47 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ void	load_textures(t_data *dt)
 	dt->textures.tdl = mlx_load_png("./bonus/textures/walls/down_left.png");
 	dt->textures.ttr = mlx_load_png("./bonus/textures/walls/top_right.png");
 	dt->textures.tdr = mlx_load_png("./bonus/textures/walls/down_right.png");
-	if (!dt->textures.tground || !dt->textures.tplayer || !dt->textures.ttop
-		|| !dt->textures.tcoin || !dt->textures.texit || !dt->textures.tenemy
+	dt->textures.twin = mlx_load_png("./bonus/textures/additional/you_win.png");
+	dt->textures.tlose
+		= mlx_load_png("./bonus/textures/additional/you_lose.png");
+	if (!dt->textures.tground || !dt->textures.tplayer || !dt->textures.tenemy
+		|| !dt->textures.tcoin || !dt->textures.texit || !dt->textures.ttop
 		|| !dt->textures.tdown || !dt->textures.tleft || !dt->textures.tright
 		|| !dt->textures.ttl || !dt->textures.ttr || !dt->textures.tdl
-		|| !dt->textures.tdr || !dt->textures.tinside)
+		|| !dt->textures.tdr || !dt->textures.tinside || !dt->textures.twin
+		|| !dt->textures.tlose)
 		print_error_f(dt, "Loading textures PNG's");
 	dt->textures.textures_done = 1;
 }
@@ -53,11 +57,14 @@ void	load_images(t_data *dt)
 	dt->textures.tr = mlx_texture_to_image(dt->mlx, dt->textures.ttr);
 	dt->textures.dl = mlx_texture_to_image(dt->mlx, dt->textures.tdl);
 	dt->textures.dr = mlx_texture_to_image(dt->mlx, dt->textures.tdr);
+	dt->textures.win = mlx_texture_to_image(dt->mlx, dt->textures.twin);
+	dt->textures.lose = mlx_texture_to_image(dt->mlx, dt->textures.tlose);
 	if (!dt->textures.ground || !dt->textures.player || !dt->textures.enemy
-		|| !dt->textures.coin || !dt->textures.exit || !dt->textures.top
-		|| !dt->textures.down || !dt->textures.left || !dt->textures.right
-		|| !dt->textures.tl || !dt->textures.tr || !dt->textures.dl
-		|| !dt->textures.dr)
+		|| !dt->textures.coin || !dt->textures.exit || !dt->textures.inside 
+		|| !dt->textures.top || !dt->textures.down || !dt->textures.left 
+		|| !dt->textures.right || !dt->textures.tl || !dt->textures.tr
+		|| !dt->textures.dl || !dt->textures.dr || !dt->textures.lose 
+		|| !dt->textures.lose)
 		print_error_f(dt, "Textures texture to image");
 	free_textures(&(dt->textures));
 	dt->textures.images_done = 1;

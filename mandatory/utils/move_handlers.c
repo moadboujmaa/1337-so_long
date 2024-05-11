@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:55:18 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/29 13:54:10 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:11:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static void	move_player(t_data *data, int x, int y)
 		ft_printf("You won!!\n");
 		mlx_close_window(data->mlx);
 	}
-
 }
 
 void	handle_keys(mlx_key_data_t keydata, void *param)

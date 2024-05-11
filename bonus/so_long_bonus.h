@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/10 16:17:01 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 11:50:30 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,8 @@ typedef struct s_textures
 	mlx_texture_t	*tdl;
 	mlx_texture_t	*ttr;
 	mlx_texture_t	*tdr;
+	mlx_texture_t	*twin;
+	mlx_texture_t	*tlose;
 	int				textures_done;
 	mlx_image_t		*ground;
 	mlx_image_t		*player;
@@ -169,6 +171,8 @@ typedef struct s_textures
 	mlx_image_t		*dl;
 	mlx_image_t		*tr;
 	mlx_image_t		*dr;
+	mlx_image_t		*win;
+	mlx_image_t		*lose;
 	int				images_done;
 }	t_textures;
 

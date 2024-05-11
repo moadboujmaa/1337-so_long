@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by mboujama          #+#    #+#             */
-/*   Updated: 2024/05/10 10:59:13 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:00:40 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	set_background(t_data *data, mlx_image_t *img)
 void	end_page(t_data *data, int status)
 {
 	mlx_image_t		*img;
-	mlx_image_t		*img2;
-	mlx_texture_t	*texture;
 	int				pos_x;
 	int				pos_y;
 
@@ -43,15 +41,10 @@ void	end_page(t_data *data, int status)
 		print_error_f(data, "new image");
 	set_background(data, img);
 	mlx_image_to_window(data->mlx, img, 0, 0);
-	if (status == WIN)
-		texture = mlx_load_png("./bonus/textures/additional/you_win.png");
-	else
-		texture = mlx_load_png("./bonus/textures/additional/you_lose.png");
-	if (!texture)
-		print_error_f(data, "End image not found");
-	img2 = mlx_texture_to_image(data->mlx, texture);
-	mlx_delete_texture(texture);
 	pos_x = (data->width - 316) / 2;
 	pos_y = (data->height - 95) / 2;
-	mlx_image_to_window(data->mlx, img2, pos_x, pos_y);
+	if (status == WIN)
+		mlx_image_to_window(data->mlx, data->textures.win, pos_x, pos_y);
+	else
+		mlx_image_to_window(data->mlx, data->textures.lose, pos_x, pos_y);
 }
