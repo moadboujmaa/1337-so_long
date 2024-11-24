@@ -13,7 +13,7 @@ CFLAGS		= -Wall -Wextra -Werror
 LIBFT_AR	= ./shared/libft/libft.a
 LIBFT		= ./shared/libft
 
-MLX_FLAGS	= ./shared/MLX42/build/libmlx42.a ./shared/MLX42/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
+MLX_FLAGS	= ./shared/include/libmlx42.a ./shared/include/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:42:24 by  mboujama         #+#    #+#             */
-/*   Updated: 2024/05/11 11:50:30 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:57:11 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_BONUS_H
 
 # include "../shared/libft/libft.h"
-# include "../shared/MLX42/include/MLX42/MLX42.h"
+# include "../shared/include/MLX42.h"
 # include <time.h>
 
 # define COIN		67
